@@ -1,0 +1,13 @@
+# Web Fonts Directory
+
+This directory is for self-hosted web fonts (optional).
+
+By default, templates use Google Fonts CDN. If you prefer to self-host fonts:
+
+1. Download font files (WOFF2 format recommended)
+2. Place them in this directory
+3. Update CSS @font-face declarations in styles.css
+
+## Template 1 Fonts:
+- Playfair Display (serif) - for headings
+- Lato (sans-serif) - for body text

@@ -1,0 +1,112 @@
+/* ============================================
+   CSS Custom Properties (Variables)
+   Template 3: Moonlit Pages
+   ============================================ */
+
+:root {
+  /* ============================================
+     Brand Colors
+     ============================================ */
+  
+  /* Gold Tones */
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F4E4C1;
+  
+  /* Black Tones */
+  --color-black-primary: #1A1A1A;
+  --color-black-secondary: #2C2C2C;
+  
+  /* Cream/Ivory Tones */
+  --color-cream-primary: #FFF8E7;
+  --color-cream-secondary: #F5F5DC;
+  
+  /* Warm Neutrals (Primary for Template 3) */
+  --color-neutral-warm-1: #D7CCC8;
+  --color-neutral-warm-2: #BCAAA4;
+  
+  /* ============================================
+     Typography
+     ============================================ */
+  
+  /* Font Families */
+  --font-primary: 'Cormorant Garamond', serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  
+  /* Font Sizes */
+  --font-size-base: 16px;
+  --font-size-small: 0.875rem;
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-h5: 1.125rem;
+  --font-size-h6: 1rem;
+  
+  /* Line Heights */
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+  --line-height-tight: 1.4;
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* ============================================
+     Spacing Scale
+     ============================================ */
+  
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 1rem;      /* 16px */
+  --spacing-md: 1.5rem;    /* 24px */
+  --spacing-lg: 2rem;      /* 32px */
+  --spacing-xl: 3rem;      /* 48px */
+  --spacing-2xl: 4rem;     /* 64px */
+  --spacing-3xl: 6rem;     /* 96px */
+  
+  /* ============================================
+     Layout
+     ============================================ */
+  
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-md);
+  --header-height: 80px;
+  --footer-padding: var(--spacing-xl);
+  
+  /* ============================================
+     Border and Radius
+     ============================================ */
+  
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  
+  /* ============================================
+     Shadows
+     ============================================ */
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+  
+  /* ============================================
+     Transitions
+     ============================================ */
+  
+  --transition-speed-fast: 0.15s;
+  --transition-speed: 0.3s;
+  --transition-speed-slow: 0.5s;
+  --transition-easing: ease-in-out;
+  
+  /* ============================================
+     Z-Index Scale
+     ============================================ */
+  
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-modal-backdrop: 900;
+  --z-index-modal: 1000;
+}

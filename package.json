@@ -1,0 +1,24 @@
+{
+  "name": "chikielau-website-templates",
+  "version": "1.0.0",
+  "description": "Three distinct website templates for the Chikielau bookstagrammer brand",
+  "scripts": {
+    "test": "node --test tests/**/*.test.js",
+    "test:property": "node --test tests/property/**/*.property.test.js",
+    "test:unit": "node --test tests/unit/**/*.test.js",
+    "test:validate": "node --test tests/validation/**/*.test.js"
+  },
+  "keywords": [
+    "website-templates",
+    "bookstagrammer",
+    "chikielau"
+  ],
+  "author": "Chikielau",
+  "license": "MIT",
+  "devDependencies": {
+    "cheerio": "^1.2.0",
+    "css": "^3.0.0",
+    "fast-check": "^3.15.0",
+    "jsdom": "^28.0.0"
+  }
+}

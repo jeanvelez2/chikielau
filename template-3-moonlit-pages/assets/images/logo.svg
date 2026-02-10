@@ -1,0 +1,47 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chikielau Logo: Gold Celestial Design with Crescent Moon and Stars -->
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#D4AF37" stroke-width="2"/>
+  
+  <!-- Crescent Moon -->
+  <path d="M 100 40 Q 130 70 100 100 Q 130 130 100 160 Q 85 145 85 100 Q 85 55 100 40 Z" 
+        fill="#D4AF37" opacity="0.9"/>
+  
+  <!-- Stars -->
+  <!-- Top Star -->
+  <g transform="translate(100, 25)">
+    <path d="M 0,-8 L 2,-2 L 8,-2 L 3,2 L 5,8 L 0,4 L -5,8 L -3,2 L -8,-2 L -2,-2 Z" 
+          fill="#D4AF37"/>
+  </g>
+  
+  <!-- Right Star -->
+  <g transform="translate(145, 70)">
+    <path d="M 0,-6 L 1.5,-1.5 L 6,-1.5 L 2.25,1.5 L 3.75,6 L 0,3 L -3.75,6 L -2.25,1.5 L -6,-1.5 L -1.5,-1.5 Z" 
+          fill="#D4AF37"/>
+  </g>
+  
+  <!-- Left Star -->
+  <g transform="translate(55, 70)">
+    <path d="M 0,-6 L 1.5,-1.5 L 6,-1.5 L 2.25,1.5 L 3.75,6 L 0,3 L -3.75,6 L -2.25,1.5 L -6,-1.5 L -1.5,-1.5 Z" 
+          fill="#D4AF37"/>
+  </g>
+  
+  <!-- Bottom Right Star -->
+  <g transform="translate(135, 140)">
+    <path d="M 0,-5 L 1.25,-1.25 L 5,-1.25 L 1.875,1.25 L 3.125,5 L 0,2.5 L -3.125,5 L -1.875,1.25 L -5,-1.25 L -1.25,-1.25 Z" 
+          fill="#D4AF37"/>
+  </g>
+  
+  <!-- Bottom Left Star -->
+  <g transform="translate(65, 140)">
+    <path d="M 0,-5 L 1.25,-1.25 L 5,-1.25 L 1.875,1.25 L 3.125,5 L 0,2.5 L -3.125,5 L -1.875,1.25 L -5,-1.25 L -1.25,-1.25 Z" 
+          fill="#D4AF37"/>
+  </g>
+  
+  <!-- Brand Name -->
+  <text x="100" y="185" font-family="serif" font-size="18" font-weight="600" 
+        text-anchor="middle" fill="#D4AF37" letter-spacing="2">
+    CHIKIELAU
+  </text>
+</svg>

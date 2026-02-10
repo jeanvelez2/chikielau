@@ -128,7 +128,7 @@ template-name/
       <a href="#" aria-label="Goodreads"><img src="assets/images/icons/goodreads.svg" alt=""></a>
     </div>
     <div class="footer-info">
-      <p>&copy; 2024 Chikielau. All rights reserved.</p>
+      <p>&copy; 2026 Chikielau. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -154,7 +154,7 @@ template-name/
       <a href="blog-post.html">Review: Book Title</a>
     </h3>
     <p class="post-card-meta">
-      <time datetime="2024-01-15">January 15, 2024</time>
+      <time datetime="2026-01-15">January 15, 2026</time>
     </p>
     <p class="post-card-excerpt">
       Brief excerpt of the review...
@@ -491,7 +491,7 @@ While templates use static HTML, the structure anticipates CMS integration:
   title: "Book Review: Title",
   slug: "book-review-title",
   author: "Chikielau",
-  publishDate: "2024-01-15",
+  publishDate: "2026-01-15",
   featuredImage: {
     url: "path/to/image.jpg",
     alt: "Book cover description"

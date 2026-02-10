@@ -1,0 +1,13 @@
+# Placeholder Images Directory
+
+This directory contains example images for content demonstration.
+
+## Recommended Placeholder Images:
+
+- **hero-background.jpg** (1920x1080px) - Homepage hero section background
+- **book-cover-1.jpg** through **book-cover-12.jpg** (400x600px) - Book cover examples
+- **blog-featured-1.jpg** through **blog-featured-6.jpg** (1200x630px) - Blog post featured images
+- **author-photo.jpg** (800x800px) - About page author photo
+- **reading-progress.jpg** (400x600px) - Currently reading book cover
+
+All images should be optimized for web (under 500KB for photos, compressed JPG or WebP format).
