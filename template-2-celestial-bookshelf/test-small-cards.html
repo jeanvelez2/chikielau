@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Small Cards</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      padding: 2rem;
+    }
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--color-background-secondary);
+      padding: 2rem;
+    }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1 style="color: var(--color-gold-primary); margin-bottom: 2rem;">Small Card Test</h1>
+    
+    <div class="test-grid">
+      <!-- Small Card 1 -->
+      <article class="post-card post-card-small">
+        <div class="post-card-image">
+          <img src="assets/images/placeholders/blog-featured-3.svg" alt="Test" loading="lazy">
+          <div class="post-overlay">
+            <span class="post-category">Fiction</span>
+          </div>
+        </div>
+        <div class="post-card-content">
+          <div class="star-rating" data-rating="5" role="img" aria-label="Rating: 5 out of 5 stars">
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+          </div>
+          <h2 class="post-card-title">
+            <a href="#">The Seven Husbands of Evelyn Hugo</a>
+          </h2>
+          <p class="post-card-meta">
+            <time datetime="2026-01-05">January 5, 2026</time>
+          </p>
+          <p class="post-card-excerpt">
+            A captivating tale of Old Hollywood glamour, secrets, and the price of fame. Taylor Jenkins Reid has crafted an unforgettable character.
+          </p>
+          <a href="#" class="btn-read-more">Read Review</a>
+        </div>
+      </article>
+
+      <!-- Small Card 2 -->
+      <article class="post-card post-card-small">
+        <div class="post-card-image">
+          <img src="assets/images/placeholders/blog-featured-4.svg" alt="Test" loading="lazy">
+          <div class="post-overlay">
+            <span class="post-category">Sci-Fi</span>
+          </div>
+        </div>
+        <div class="post-card-content">
+          <div class="star-rating" data-rating="4.5" role="img" aria-label="Rating: 4.5 out of 5 stars">
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star filled" aria-hidden="true">★</span>
+            <span class="star half" aria-hidden="true">★</span>
+          </div>
+          <h2 class="post-card-title">
+            <a href="#">Project Hail Mary: Science Meets Heart</a>
+          </h2>
+          <p class="post-card-meta">
+            <time datetime="2025-12-28">December 28, 2025</time>
+          </p>
+          <p class="post-card-excerpt">
+            Andy Weir's latest is a thrilling space adventure with humor and heart. Perfect for fans of The Martian.
+          </p>
+          <a href="#" class="btn-read-more">Read Review</a>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: var(--color-background-primary); border: 2px solid var(--color-gold-primary); border-radius: 8px;">
+      <h3 style="color: var(--color-gold-primary);">What to check:</h3>
+      <ul style="color: var(--color-cream-primary); line-height: 1.8;">
+        <li>Title should be smaller (18px/1.125rem)</li>
+        <li>Excerpt text should be smaller (14px/0.875rem)</li>
+        <li>Excerpt should be truncated to 3 lines with "..." at the end</li>
+        <li>Star rating should be smaller (1.2rem)</li>
+        <li>Button should be more compact</li>
+        <li>Overall padding should be reduced</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

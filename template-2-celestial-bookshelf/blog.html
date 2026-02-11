@@ -52,8 +52,109 @@
   </script>
   
   <!-- CSS -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/variables.css?v=11">
+  <link rel="stylesheet" href="css/styles.css?v=11">
+  
+  <!-- Inline fix for small cards - CRITICAL FIX -->
+  <style>
+    /* Starfield background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #1A1A1A;
+      background-image: 
+        radial-gradient(circle, #D4AF37 3px, transparent 3px),
+        radial-gradient(circle, #F4E4C1 2px, transparent 2px),
+        radial-gradient(circle, #D4AF37 2px, transparent 2px),
+        radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px),
+        radial-gradient(circle, #F4E4C1 1px, transparent 1px),
+        radial-gradient(circle, #D4AF37 1px, transparent 1px),
+        radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
+      background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
+      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
+      opacity: 1;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+    
+    /* Small card fixes */
+    /* Force grid to not stretch cards */
+    .blog-archive .posts-grid {
+      align-items: start !important;
+    }
+    
+    /* Make small cards wider */
+    @media (min-width: 1024px) {
+      .blog-archive .posts-grid .post-card-small:nth-of-type(3) {
+        grid-column: 1 / 7 !important;
+      }
+      
+      .blog-archive .posts-grid .post-card-small:nth-of-type(4) {
+        grid-column: 7 / 13 !important;
+      }
+    }
+    
+    /* Small card fixes with maximum specificity */
+    .blog-archive .posts-grid .post-card.post-card-small {
+      height: auto !important;
+      min-height: 500px !important;
+      max-height: none !important;
+      overflow: visible !important;
+      overflow-y: visible !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .post-card-content {
+      padding: 1.5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      height: auto !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .post-card-title {
+      font-size: 1.125rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .post-card-meta {
+      font-size: 0.875rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .post-card-excerpt {
+      font-size: 0.875rem !important;
+      line-height: 1.5 !important;
+      margin-bottom: 1rem !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      max-height: 3em !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .star-rating {
+      font-size: 1.1rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .blog-archive .posts-grid .post-card-small .btn-read-more {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.875rem !important;
+      margin-top: auto !important;
+      align-self: flex-start !important;
+      display: inline-block !important;
+    }
+  </style>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
