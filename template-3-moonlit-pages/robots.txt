@@ -1,0 +1,16 @@
+# Robots.txt for Chikielau - Template 3: Moonlit Pages
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.chikielau.com/sitemap.xml
+
+# Disallow admin or private directories (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all CSS, JS, and image files for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /assets/

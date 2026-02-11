@@ -136,20 +136,45 @@ function initNewsletterModal() {
   // Check if modal was already dismissed
   if (getCookie(CONFIG.cookieName)) return;
   
-  // Show modal after delay
-  setTimeout(() => {
+  let modalShown = false;
+  
+  // Function to show modal
+  const showModal = () => {
+    if (modalShown) return;
+    modalShown = true;
+    
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    
     // Focus on first input
     const firstInput = modal.querySelector('input[type="email"]');
     if (firstInput) firstInput.focus();
+  };
+  
+  // Show modal after delay (5 seconds)
+  setTimeout(() => {
+    showModal();
   }, CONFIG.modalDelay);
+  
+  // Show modal on scroll to 50% of page
+  const handleScroll = () => {
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    if (scrollPercent >= 50) {
+      showModal();
+      window.removeEventListener('scroll', handleScroll);
+    }
+  };
+  
+  window.addEventListener('scroll', handleScroll);
   
   // Close modal function
   const closeModal = () => {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     setCookie(CONFIG.cookieName, 'true', CONFIG.cookieExpireDays);
+    window.removeEventListener('scroll', handleScroll);
   };
   
   // Close on button click

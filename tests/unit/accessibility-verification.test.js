@@ -7,6 +7,8 @@
  * Requirements tested: 12.3, 12.4, 12.5, 12.6
  */
 
+const { describe, test } = require('node:test');
+const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
@@ -42,7 +44,7 @@ describe('Template 1 Accessibility Features', () => {
           }
         });
         
-        expect(imagesWithoutAlt).toEqual([]);
+        assert.deepStrictEqual(imagesWithoutAlt, []);
       });
       
       test(`${file}: Logo images should have descriptive alt text`, () => {
@@ -53,13 +55,14 @@ describe('Template 1 Accessibility Features', () => {
         const logoImg = $('.logo img');
         if (logoImg.length > 0) {
           const alt = logoImg.attr('alt');
-          expect(alt).toBeTruthy();
-          expect(alt.length).toBeGreaterThan(5); // Should be descriptive
-          expect(alt.toLowerCase()).toContain('chikielau');
+          assert.ok(alt);
+          assert.ok(alt.length > 5); // Should be descriptive
+          assert.ok(alt.toLowerCase().includes('chikielau'));
         }
       });
     });
   });
+
   
   describe('ARIA Labels for Icon Buttons (Requirement 12.6)', () => {
     HTML_FILES.forEach(file => {
@@ -71,8 +74,8 @@ describe('Template 1 Accessibility Features', () => {
         const navToggle = $('.nav-toggle, #navToggle');
         if (navToggle.length > 0) {
           const ariaLabel = navToggle.attr('aria-label');
-          expect(ariaLabel).toBeTruthy();
-          expect(ariaLabel.toLowerCase()).toMatch(/toggle|menu|navigation/);
+          assert.ok(ariaLabel);
+          assert.match(ariaLabel.toLowerCase(), /toggle|menu|navigation/);
         }
       });
       
@@ -84,8 +87,8 @@ describe('Template 1 Accessibility Features', () => {
         const modalClose = $('.modal-close');
         if (modalClose.length > 0) {
           const ariaLabel = modalClose.attr('aria-label');
-          expect(ariaLabel).toBeTruthy();
-          expect(ariaLabel.toLowerCase()).toMatch(/close/);
+          assert.ok(ariaLabel);
+          assert.match(ariaLabel.toLowerCase(), /close/);
         }
       });
       
@@ -102,7 +105,7 @@ describe('Template 1 Accessibility Features', () => {
           
           // Either has aria-label or visible text
           if (!hasVisibleText) {
-            expect(ariaLabel).toBeTruthy();
+            assert.ok(ariaLabel);
           }
         });
       });
@@ -118,14 +121,14 @@ describe('Template 1 Accessibility Features', () => {
       
       if (prevBtn.length > 0) {
         const ariaLabel = prevBtn.attr('aria-label');
-        expect(ariaLabel).toBeTruthy();
-        expect(ariaLabel.toLowerCase()).toMatch(/previous|prev/);
+        assert.ok(ariaLabel);
+        assert.match(ariaLabel.toLowerCase(), /previous|prev/);
       }
       
       if (nextBtn.length > 0) {
         const ariaLabel = nextBtn.attr('aria-label');
-        expect(ariaLabel).toBeTruthy();
-        expect(ariaLabel.toLowerCase()).toMatch(/next/);
+        assert.ok(ariaLabel);
+        assert.match(ariaLabel.toLowerCase(), /next/);
       }
     });
     
@@ -138,11 +141,12 @@ describe('Template 1 Accessibility Features', () => {
       indicators.each((i, elem) => {
         const $indicator = $(elem);
         const ariaLabel = $indicator.attr('aria-label');
-        expect(ariaLabel).toBeTruthy();
-        expect(ariaLabel.toLowerCase()).toMatch(/slide|go to/);
+        assert.ok(ariaLabel);
+        assert.match(ariaLabel.toLowerCase(), /slide|go to/);
       });
     });
   });
+
   
   describe('Heading Hierarchy (Requirement 12.5)', () => {
     HTML_FILES.forEach(file => {
@@ -152,7 +156,7 @@ describe('Template 1 Accessibility Features', () => {
         const $ = cheerio.load(content);
         
         const h1Count = $('h1').length;
-        expect(h1Count).toBe(1);
+        assert.strictEqual(h1Count, 1);
       });
       
       test(`${file}: Heading levels should be sequential (no skipping)`, () => {
@@ -170,11 +174,12 @@ describe('Template 1 Accessibility Features', () => {
         for (let i = 1; i < headings.length; i++) {
           const diff = headings[i] - headings[i - 1];
           // Difference should be -X (going back up), 0 (same level), or 1 (one level down)
-          expect(diff).toBeLessThanOrEqual(1);
+          assert.ok(diff <= 1);
         }
       });
     });
   });
+
   
   describe('Keyboard Navigation Support (Requirement 12.4)', () => {
     HTML_FILES.forEach(file => {
@@ -190,7 +195,7 @@ describe('Template 1 Accessibility Features', () => {
           
           if (tabindex !== undefined) {
             const tabindexValue = parseInt(tabindex);
-            expect(tabindexValue).toBeGreaterThanOrEqual(0);
+            assert.ok(tabindexValue >= 0);
           }
         });
       });
@@ -224,11 +229,12 @@ describe('Template 1 Accessibility Features', () => {
           
           if ($input.parent('label').length > 0) hasLabel = true;
           
-          expect(hasLabel).toBe(true);
+          assert.strictEqual(hasLabel, true);
         });
       });
     });
   });
+
   
   describe('Focus Indicators', () => {
     test('CSS should include focus-visible styles', () => {
@@ -236,10 +242,11 @@ describe('Template 1 Accessibility Features', () => {
       const content = fs.readFileSync(cssPath, 'utf-8');
       
       // Check for focus-visible styles
-      expect(content).toMatch(/:focus-visible/);
-      expect(content).toMatch(/outline.*gold/i);
+      assert.match(content, /:focus-visible/);
+      assert.match(content, /outline.*gold/i);
     });
   });
+
   
   describe('ARIA Attributes for Complex Components', () => {
     HTML_FILES.forEach(file => {
@@ -255,10 +262,10 @@ describe('Template 1 Accessibility Features', () => {
           const ariaLabelledby = modal.attr('aria-labelledby');
           const ariaDescribedby = modal.attr('aria-describedby');
           
-          expect(ariaHidden).toBeDefined();
-          expect(role).toBe('dialog');
-          expect(ariaLabelledby).toBeTruthy();
-          expect(ariaDescribedby).toBeTruthy();
+          assert.ok(ariaHidden !== undefined);
+          assert.strictEqual(role, 'dialog');
+          assert.ok(ariaLabelledby);
+          assert.ok(ariaDescribedby);
         }
       });
       
@@ -272,8 +279,8 @@ describe('Template 1 Accessibility Features', () => {
           const ariaExpanded = navToggle.attr('aria-expanded');
           const ariaControls = navToggle.attr('aria-controls');
           
-          expect(ariaExpanded).toBeDefined();
-          expect(ariaControls).toBeTruthy();
+          assert.ok(ariaExpanded !== undefined);
+          assert.ok(ariaControls);
         }
       });
     });
@@ -290,13 +297,14 @@ describe('Template 1 Accessibility Features', () => {
         const ariaValuemin = progressBar.attr('aria-valuemin');
         const ariaValuemax = progressBar.attr('aria-valuemax');
         
-        expect(role).toBe('progressbar');
-        expect(ariaValuenow).toBeDefined();
-        expect(ariaValuemin).toBeDefined();
-        expect(ariaValuemax).toBeDefined();
+        assert.strictEqual(role, 'progressbar');
+        assert.ok(ariaValuenow !== undefined);
+        assert.ok(ariaValuemin !== undefined);
+        assert.ok(ariaValuemax !== undefined);
       }
     });
   });
+
   
   describe('Decorative Elements', () => {
     HTML_FILES.forEach(file => {
@@ -309,17 +317,17 @@ describe('Template 1 Accessibility Features', () => {
         const decorativeContainers = $('.stat-icon, .placeholder-icon, .celestial-accent, .reason-item svg');
         decorativeContainers.each((i, elem) => {
           const $elem = $(elem);
-          const ariaHidden = $elem.attr('aria-hidden');
           
           // Decorative elements should have aria-hidden="true"
           if ($elem.is('svg') || $elem.find('svg').length > 0) {
             const svg = $elem.is('svg') ? $elem : $elem.find('svg');
-            expect(svg.attr('aria-hidden')).toBe('true');
+            assert.strictEqual(svg.attr('aria-hidden'), 'true');
           }
         });
       });
     });
   });
+
   
   describe('Form Accessibility', () => {
     HTML_FILES.forEach(file => {
@@ -332,7 +340,7 @@ describe('Template 1 Accessibility Features', () => {
         errorMessages.each((i, elem) => {
           const $elem = $(elem);
           const role = $elem.attr('role');
-          expect(role).toBe('alert');
+          assert.strictEqual(role, 'alert');
         });
       });
       
@@ -345,7 +353,7 @@ describe('Template 1 Accessibility Features', () => {
         successMessages.each((i, elem) => {
           const $elem = $(elem);
           const role = $elem.attr('role');
-          expect(role).toBe('status');
+          assert.strictEqual(role, 'status');
         });
       });
       
@@ -358,11 +366,12 @@ describe('Template 1 Accessibility Features', () => {
         requiredInputs.each((i, elem) => {
           const $elem = $(elem);
           const ariaRequired = $elem.attr('aria-required');
-          expect(ariaRequired).toBe('true');
+          assert.strictEqual(ariaRequired, 'true');
         });
       });
     });
   });
+
   
   describe('Screen Reader Support', () => {
     HTML_FILES.forEach(file => {
@@ -376,7 +385,7 @@ describe('Template 1 Accessibility Features', () => {
         
         // Should have at least some sr-only elements (for form labels)
         if ($('form').length > 0) {
-          expect(srOnlyElements.length).toBeGreaterThan(0);
+          assert.ok(srOnlyElements.length > 0);
         }
       });
     });
@@ -385,9 +394,9 @@ describe('Template 1 Accessibility Features', () => {
       const cssPath = path.join(TEMPLATE_DIR, 'css/styles.css');
       const content = fs.readFileSync(cssPath, 'utf-8');
       
-      expect(content).toMatch(/\.sr-only/);
-      expect(content).toMatch(/position:\s*absolute/);
-      expect(content).toMatch(/width:\s*1px/);
+      assert.match(content, /\.sr-only/);
+      assert.match(content, /position:\s*absolute/);
+      assert.match(content, /width:\s*1px/);
     });
   });
 });

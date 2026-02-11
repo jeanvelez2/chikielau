@@ -51,15 +51,22 @@ function extractColors(cssContent) {
 
 /**
  * Extract only hex color values from CSS content
+ * Filters out colors in comments
  * @param {string} cssContent - The CSS file content
  * @returns {string[]} - Array of hex color values (uppercase)
  */
 function extractHexColors(cssContent) {
+  // First, remove all comments from the CSS content
+  // Remove /* ... */ style comments
+  let cleanedContent = cssContent.replace(/\/\*[\s\S]*?\*\//g, '');
+  // Remove // style comments (though less common in CSS)
+  cleanedContent = cleanedContent.replace(/\/\/.*$/gm, '');
+  
   const hexPattern = /#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})\b/g;
   const colors = [];
   let match;
   
-  while ((match = hexPattern.exec(cssContent)) !== null) {
+  while ((match = hexPattern.exec(cleanedContent)) !== null) {
     colors.push(match[0].toUpperCase());
   }
   

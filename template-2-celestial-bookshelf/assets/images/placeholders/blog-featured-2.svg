@@ -1,0 +1,37 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2C2C2C"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1A1A1A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C2C2C;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow2" cx="30%" cy="70%" r="50%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+  <circle cx="360" cy="440" r="350" fill="url(#glow2)"/>
+  
+  <!-- Decorative elements -->
+  <text x="900" y="180" font-family="Arial" font-size="42" fill="#D4AF37" opacity="0.5">★</text>
+  <text x="250" y="120" font-family="Arial" font-size="28" fill="#F4E4C1" opacity="0.4">★</text>
+  <text x="1100" y="550" font-family="Arial" font-size="32" fill="#D4AF37" opacity="0.3">★</text>
+  
+  <!-- Dragon silhouette (simple) -->
+  <path d="M 550 280 Q 580 250 620 260 Q 650 270 660 300 L 680 320 Q 690 340 670 350 Q 650 360 630 350 L 610 340 Q 590 330 580 310 Z" fill="#D4AF37" opacity="0.4"/>
+  <circle cx="625" cy="275" r="3" fill="#FFF8E7"/>
+  
+  <!-- Book stack -->
+  <rect x="480" y="340" width="240" height="30" rx="4" fill="#1A1A1A" stroke="#D4AF37" stroke-width="2"/>
+  <rect x="490" y="310" width="220" height="30" rx="4" fill="#2C2C2C" stroke="#D4AF37" stroke-width="2"/>
+  <rect x="500" y="280" width="200" height="30" rx="4" fill="#1A1A1A" stroke="#F4E4C1" stroke-width="2"/>
+  
+  <!-- Text -->
+  <text x="600" y="440" font-family="Georgia, serif" font-size="32" fill="#FFF8E7" text-anchor="middle" font-weight="bold">Fourth Wing</text>
+  <text x="600" y="480" font-family="Arial, sans-serif" font-size="20" fill="#D4AF37" text-anchor="middle">Fantasy Romance Review</text>
+</svg>

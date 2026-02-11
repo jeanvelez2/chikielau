@@ -8,7 +8,7 @@ const CONFIG = {
   modalDelay: 5000,
   cookieName: 'newsletter_modal_dismissed',
   cookieExpireDays: 30,
-  stickyHeaderOffset: 100
+  stickyHeaderOffset: 100 // Scroll distance before header becomes sticky
 };
 
 /* ============================================
@@ -125,28 +125,6 @@ function initMobileMenu() {
 }
 
 /**
- * Initialize sticky header functionality (Template 3 specific)
- */
-function initStickyHeader() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-  
-  let lastScrollTop = 0;
-  
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > CONFIG.stickyHeaderOffset) {
-      header.classList.add('sticky');
-    } else {
-      header.classList.remove('sticky');
-    }
-    
-    lastScrollTop = scrollTop;
-  });
-}
-
-/**
  * Initialize newsletter modal functionality
  */
 function initNewsletterModal() {
@@ -159,20 +137,45 @@ function initNewsletterModal() {
   // Check if modal was already dismissed
   if (getCookie(CONFIG.cookieName)) return;
   
-  // Show modal after delay
-  setTimeout(() => {
+  let modalShown = false;
+  
+  // Function to show modal
+  const showModal = () => {
+    if (modalShown) return;
+    modalShown = true;
+    
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    
     // Focus on first input
     const firstInput = modal.querySelector('input[type="email"]');
     if (firstInput) firstInput.focus();
+  };
+  
+  // Show modal after delay (5 seconds)
+  setTimeout(() => {
+    showModal();
   }, CONFIG.modalDelay);
+  
+  // Show modal on scroll to 50% of page
+  const handleScroll = () => {
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    if (scrollPercent >= 50) {
+      showModal();
+      window.removeEventListener('scroll', handleScroll);
+    }
+  };
+  
+  window.addEventListener('scroll', handleScroll);
   
   // Close modal function
   const closeModal = () => {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     setCookie(CONFIG.cookieName, 'true', CONFIG.cookieExpireDays);
+    window.removeEventListener('scroll', handleScroll);
   };
   
   // Close on button click
@@ -249,13 +252,55 @@ function initForms() {
   });
 }
 
+/**
+ * Initialize sticky header functionality (Template 3 specific)
+ */
+function initStickyHeader() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  
+  let lastScrollTop = 0;
+  let ticking = false;
+  
+  // Handle scroll event with requestAnimationFrame for performance
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateHeader(scrollTop);
+        ticking = false;
+      });
+      
+      ticking = true;
+    }
+    
+    lastScrollTop = scrollTop;
+  };
+  
+  // Update header class based on scroll position
+  const updateHeader = (scrollTop) => {
+    if (scrollTop > CONFIG.stickyHeaderOffset) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  };
+  
+  // Listen for scroll events
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Check initial scroll position
+  updateHeader(window.pageYOffset || document.documentElement.scrollTop);
+}
+
 /* ============================================
    Initialize on DOM Ready
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
-  initStickyHeader();
   initNewsletterModal();
   initForms();
+  initStickyHeader();
 });

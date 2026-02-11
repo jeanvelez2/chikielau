@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Color Contrast Check - Template 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .color-sample {
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .large-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .pass {
+      background: #d4edda;
+      color: #155724;
+    }
+    .fail {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>Template 2: Celestial Bookshelf - Color Contrast Accessibility Check</h1>
+  <p>WCAG 2.1 AA Requirements: Normal text (4.5:1), Large text (3:1)</p>
+  
+  <div class="test-section">
+    <h2>Primary Text on Black Background</h2>
+    <div class="color-sample" style="background: #1A1A1A; color: #FFF8E7;">
+      Normal text: Cream (#FFF8E7) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result1"></div>
+    
+    <div class="color-sample large-text" style="background: #1A1A1A; color: #FFF8E7;">
+      Large text: Cream (#FFF8E7) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result2"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Secondary Text on Black Background</h2>
+    <div class="color-sample" style="background: #1A1A1A; color: #D7CCC8;">
+      Normal text: Warm Neutral (#D7CCC8) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result3"></div>
+    
+    <div class="color-sample large-text" style="background: #1A1A1A; color: #D7CCC8;">
+      Large text: Warm Neutral (#D7CCC8) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result4"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Gold Text on Black Background</h2>
+    <div class="color-sample" style="background: #1A1A1A; color: #D4AF37;">
+      Normal text: Gold (#D4AF37) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result5"></div>
+    
+    <div class="color-sample large-text" style="background: #1A1A1A; color: #D4AF37;">
+      Large text: Gold (#D4AF37) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result6"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Black Text on Gold Background (Buttons)</h2>
+    <div class="color-sample" style="background: #D4AF37; color: #1A1A1A;">
+      Normal text: Black (#1A1A1A) on Gold (#D4AF37)
+    </div>
+    <div class="result" id="result7"></div>
+    
+    <div class="color-sample large-text" style="background: #D4AF37; color: #1A1A1A;">
+      Large text: Black (#1A1A1A) on Gold (#D4AF37)
+    </div>
+    <div class="result" id="result8"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Text on Secondary Black Background</h2>
+    <div class="color-sample" style="background: #2C2C2C; color: #FFF8E7;">
+      Normal text: Cream (#FFF8E7) on Secondary Black (#2C2C2C)
+    </div>
+    <div class="result" id="result9"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Muted Text on Black Background</h2>
+    <div class="color-sample" style="background: #1A1A1A; color: #BCAAA4;">
+      Normal text: Muted (#BCAAA4) on Black (#1A1A1A)
+    </div>
+    <div class="result" id="result10"></div>
+  </div>
+
+  <script>
+    // Calculate relative luminance
+    function getLuminance(r, g, b) {
+      const [rs, gs, bs] = [r, g, b].map(c => {
+        c = c / 255;
+        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+    }
+    
+    // Convert hex to RGB
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
+    
+    // Calculate contrast ratio
+    function getContrastRatio(color1, color2) {
+      const rgb1 = hexToRgb(color1);
+      const rgb2 = hexToRgb(color2);
+      
+      const lum1 = getLuminance(rgb1.r, rgb1.g, rgb1.b);
+      const lum2 = getLuminance(rgb2.r, rgb2.g, rgb2.b);
+      
+      const lighter = Math.max(lum1, lum2);
+      const darker = Math.min(lum1, lum2);
+      
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+    
+    // Test combinations
+    const tests = [
+      { id: 'result1', fg: '#FFF8E7', bg: '#1A1A1A', type: 'normal', name: 'Cream on Black (normal)' },
+      { id: 'result2', fg: '#FFF8E7', bg: '#1A1A1A', type: 'large', name: 'Cream on Black (large)' },
+      { id: 'result3', fg: '#D7CCC8', bg: '#1A1A1A', type: 'normal', name: 'Warm Neutral on Black (normal)' },
+      { id: 'result4', fg: '#D7CCC8', bg: '#1A1A1A', type: 'large', name: 'Warm Neutral on Black (large)' },
+      { id: 'result5', fg: '#D4AF37', bg: '#1A1A1A', type: 'normal', name: 'Gold on Black (normal)' },
+      { id: 'result6', fg: '#D4AF37', bg: '#1A1A1A', type: 'large', name: 'Gold on Black (large)' },
+      { id: 'result7', fg: '#1A1A1A', bg: '#D4AF37', type: 'normal', name: 'Black on Gold (normal)' },
+      { id: 'result8', fg: '#1A1A1A', bg: '#D4AF37', type: 'large', name: 'Black on Gold (large)' },
+      { id: 'result9', fg: '#FFF8E7', bg: '#2C2C2C', type: 'normal', name: 'Cream on Secondary Black (normal)' },
+      { id: 'result10', fg: '#BCAAA4', bg: '#1A1A1A', type: 'normal', name: 'Muted on Black (normal)' }
+    ];
+    
+    tests.forEach(test => {
+      const ratio = getContrastRatio(test.fg, test.bg);
+      const required = test.type === 'normal' ? 4.5 : 3.0;
+      const passes = ratio >= required;
+      
+      const resultEl = document.getElementById(test.id);
+      resultEl.className = `result ${passes ? 'pass' : 'fail'}`;
+      resultEl.innerHTML = `
+        <strong>${test.name}</strong><br>
+        Contrast Ratio: ${ratio.toFixed(2)}:1<br>
+        Required: ${required}:1<br>
+        Status: ${passes ? '✓ PASS' : '✗ FAIL'}
+      `;
+    });
+  </script>
+</body>
+</html>

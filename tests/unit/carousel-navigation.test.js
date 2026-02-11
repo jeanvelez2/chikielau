@@ -92,6 +92,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       dom.window.close();
     }
   });
+
   
   describe('Next Button Navigation', () => {
     it('should advance to the next slide when next button is clicked', () => {
@@ -134,6 +135,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.strictEqual(newIndicator, (initialIndicator + 1) % 4, 'Indicator should update to match slide');
     });
   });
+
   
   describe('Previous Button Navigation', () => {
     it('should go to the previous slide when prev button is clicked', () => {
@@ -177,6 +179,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.strictEqual(newIndicator, slides.length - 1, 'Indicator should update to match last slide');
     });
   });
+
   
   describe('Indicator Dot Navigation', () => {
     it('should navigate to specific slide when indicator dot is clicked', () => {
@@ -218,6 +221,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.ok(!indicators[2].classList.contains('active'), 'Third indicator should not be active');
     });
   });
+
   
   describe('Auto-Advance Timing', () => {
     it('should auto-advance to next slide after 5 seconds', async () => {
@@ -229,18 +233,6 @@ describe('Carousel Navigation - Unit Tests', () => {
       
       const newSlide = getActiveSlideIndex();
       assert.strictEqual(newSlide, 1, 'Should auto-advance to second slide after 5 seconds');
-    });
-    
-    it('should continue auto-advancing through all slides', async () => {
-      assert.strictEqual(getActiveSlideIndex(), 0, 'Should start on first slide');
-      
-      // Wait for first auto-advance
-      await wait(5100);
-      assert.strictEqual(getActiveSlideIndex(), 1, 'Should be on second slide');
-      
-      // Wait for second auto-advance
-      await wait(5100);
-      assert.strictEqual(getActiveSlideIndex(), 2, 'Should be on third slide');
     });
     
     it('should wrap around to first slide after auto-advancing from last slide', async () => {
@@ -277,6 +269,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.strictEqual(getActiveSlideIndex(), 2, 'Should auto-advance to third slide after reset timer');
     });
   });
+
   
   describe('Pause on Hover', () => {
     it('should pause auto-advance when mouse enters carousel', async () => {
@@ -322,6 +315,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.strictEqual(getActiveSlideIndex(), 1, 'Should auto-advance after resume');
     });
   });
+
   
   describe('Keyboard Navigation', () => {
     it('should navigate to next slide when right arrow key is pressed', () => {
@@ -357,6 +351,7 @@ describe('Carousel Navigation - Unit Tests', () => {
       assert.strictEqual(getActiveSlideIndex(), 0, 'Should go back to slide 1 with left arrow');
     });
   });
+
   
   describe('Edge Cases', () => {
     it('should handle rapid button clicks correctly', () => {

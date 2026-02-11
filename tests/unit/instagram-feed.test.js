@@ -42,6 +42,7 @@ describe('Instagram Feed Integration - Template 1', () => {
     });
   });
 
+
   describe('Integration Instructions', () => {
     test('should contain HTML comment with integration instructions', () => {
       // Check for instruction comment
@@ -65,6 +66,7 @@ describe('Instagram Feed Integration - Template 1', () => {
       assert.ok(htmlContent.includes('3.'), 'Should have step 3');
     });
   });
+
 
   describe('Placeholder Content', () => {
     test('should have placeholder content for visual reference', () => {
@@ -106,6 +108,7 @@ describe('Instagram Feed Integration - Template 1', () => {
     });
   });
 
+
   describe('Accessibility', () => {
     test('should have proper semantic structure', () => {
       const section = document.querySelector('.instagram-feed-section');
@@ -129,6 +132,7 @@ describe('Instagram Feed Integration - Template 1', () => {
       assert.ok(svg, 'SVG icon should exist');
     });
   });
+
 
   describe('CSS Styling', () => {
     const cssPath = path.join(__dirname, '../../template-1-literary-lounge/css/styles.css');
@@ -158,6 +162,7 @@ describe('Instagram Feed Integration - Template 1', () => {
     });
   });
 
+
   describe('Brand Consistency', () => {
     test('should use brand color classes', () => {
       const ctaButton = document.querySelector('.instagram-placeholder .btn-gold');
@@ -176,6 +181,7 @@ describe('Instagram Feed Integration - Template 1', () => {
       }
     });
   });
+
 
   describe('Integration Flexibility', () => {
     test('should support multiple integration methods', () => {
@@ -196,6 +202,7 @@ describe('Instagram Feed Integration - Template 1', () => {
       assert.ok(htmlContent.includes('instagram-item'), 'Should mention instagram-item');
     });
   });
+
 
   describe('Responsive Design', () => {
     const cssPath = path.join(__dirname, '../../template-1-literary-lounge/css/styles.css');

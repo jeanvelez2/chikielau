@@ -1,4 +1,8 @@
-# Project Structure
+---
+inclusion: always
+---
+
+# Project Structure & Architecture Conventions
 
 ## Root Directory Organization
 
@@ -22,10 +26,13 @@ chikielau-templates/
 
 ## Template Directory Structure
 
-Each template follows an identical structure for consistency:
+**CRITICAL**: Each template is completely self-contained with identical structure. When creating or modifying files:
+- Use relative paths within the template directory only
+- Never reference files from other templates
+- Maintain consistent directory structure across all templates
 
 ```
-template-name/
+template-{number}-{name}/
 ├── index.html                 # Homepage
 ├── blog.html                  # Blog archive page
 ├── blog-post.html             # Single post template
@@ -33,41 +40,44 @@ template-name/
 ├── shop.html                  # Shop/recommendations page
 ├── contact.html               # Contact page
 ├── css/
-│   ├── variables.css         # CSS custom properties (colors, fonts, spacing)
-│   ├── styles.css            # Main stylesheet
-│   └── components.css        # Reusable component styles (optional)
+│   ├── variables.css         # CSS custom properties (ALWAYS edit this for theme changes)
+│   └── styles.css            # Main stylesheet
 ├── js/
-│   ├── script.js             # Main JavaScript
-│   └── components.js         # Component-specific JS (optional)
+│   └── script.js             # Main JavaScript (vanilla ES6+)
 ├── assets/
 │   ├── images/
-│   │   ├── logo.png          # Chikielau logo
-│   │   ├── placeholders/     # Example images for content
+│   │   ├── logo.svg          # Chikielau logo (SVG preferred)
+│   │   ├── placeholders/     # Example images
 │   │   └── icons/            # Social media icons (Instagram, TikTok, Goodreads)
-│   └── fonts/                # Web fonts (if self-hosted)
-└── README.md                 # Template-specific documentation
+│   └── fonts/                # Self-hosted fonts (optional)
+└── README.md                 # Template documentation
 ```
 
 ## File Naming Conventions
 
-- **HTML files**: Lowercase with hyphens (e.g., `blog-post.html`)
-- **CSS files**: Lowercase with hyphens (e.g., `variables.css`)
-- **JavaScript files**: Lowercase with hyphens (e.g., `script.js`)
-- **Image files**: Descriptive lowercase with hyphens (e.g., `book-cover-placeholder.jpg`)
-- **Directories**: Lowercase with hyphens (e.g., `template-1-literary-lounge`)
+**Always use lowercase with hyphens (kebab-case)**:
+- HTML: `blog-post.html`, `about.html`
+- CSS: `variables.css`, `styles.css`
+- JavaScript: `script.js`, `form-validation.js`
+- Images: `book-cover-placeholder.jpg`, `hero-image.png`
+- Directories: `template-1-literary-lounge`, `assets/images/placeholders`
 
-## Page Structure
+## HTML Page Structure Template
 
-All HTML pages follow this consistent structure:
+**All HTML pages MUST follow this structure**:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta tags: charset, viewport, description, Open Graph -->
-  <title>Page Title - Chikielau</title>
-  <!-- CSS links -->
-  <!-- Font links (Google Fonts) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="[Page-specific description]">
+  <!-- Open Graph meta tags -->
+  <title>[Page Title] - Chikielau</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Google Fonts link -->
 </head>
 <body>
   <header class="site-header">
@@ -84,77 +94,175 @@ All HTML pages follow this consistent structure:
   
   <!-- Newsletter modal (if applicable) -->
   
-  <!-- JavaScript files -->
+  <script src="js/script.js"></script>
 </body>
 </html>
 ```
 
-## Component Organization
+**Rules**:
+- No inline styles or inline scripts
+- CSS files loaded in `<head>` (variables.css before styles.css)
+- JavaScript files loaded at end of `<body>`
+- Semantic HTML5 elements required (`<header>`, `<main>`, `<footer>`, `<nav>`, `<article>`, `<section>`)
+- Proper heading hierarchy (single `<h1>` per page, sequential h2-h6)
 
-### Reusable Components
+## Component Architecture
 
-Each template includes these core components:
+### Core Components (Required in All Templates)
 
-1. **Header Component**: Logo, navigation, mobile menu toggle
-2. **Footer Component**: Newsletter form, social media icons, copyright
-3. **Blog Post Card**: Preview card with image, title, excerpt, metadata
-4. **Product Card**: Book recommendation with cover, description, CTA button
-5. **Newsletter Modal**: Popup signup form with dismiss functionality
-6. **Instagram Feed**: Integration area for Instagram content
+When creating or modifying templates, ensure these components exist:
+
+1. **Header Component** (`.site-header`)
+   - Logo with link to homepage
+   - Navigation menu (`<nav>` with `<ul>` list)
+   - Mobile menu toggle button (hamburger icon)
+   - ARIA labels for accessibility
+
+2. **Footer Component** (`.site-footer`)
+   - Newsletter signup form with email validation
+   - Social media icon links (Instagram, TikTok, Goodreads)
+   - Copyright notice
+   - Proper `rel="noopener noreferrer"` on external links
+
+3. **Blog Post Card** (`.blog-post-card`)
+   - Featured image with alt text
+   - Post title (h2 or h3)
+   - Excerpt/preview text
+   - Metadata (date, category, read time)
+   - "Read More" link
+
+4. **Product Card** (`.product-card`)
+   - Book cover image with alt text
+   - Book title and author
+   - Description/review excerpt
+   - "Buy Now" CTA button with affiliate link
+   - Proper external link attributes
+
+5. **Newsletter Modal** (`.newsletter-modal`)
+   - Popup form with email input
+   - Close/dismiss button
+   - localStorage persistence (don't show again)
+   - Configurable delay (default 5 seconds)
+
+6. **Instagram Feed Section** (`.instagram-feed`)
+   - Grid layout (2x3 or 3x3)
+   - Placeholder for widget integration
+   - Responsive grid behavior
 
 ### Template-Specific Components
 
-- **Template 1**: Featured book carousel, "Currently Reading" section
-- **Template 2**: Star rating component, split-screen hero
-- **Template 3**: "Book of the Month" section, sticky header
+**Template 1 (Literary Lounge)**:
+- Featured book carousel with navigation arrows
+- "Currently Reading" spotlight section
 
-## CSS Organization
+**Template 2 (Celestial Bookshelf)**:
+- Star rating component (1-5 stars, visual and semantic)
+- Split-screen hero layout
+- Side/hamburger navigation with celestial icons
 
-### variables.css
-Contains all CSS custom properties:
-- Brand colors (gold, black, cream, neutrals)
-- Typography (font families, sizes, line heights)
-- Spacing scale (xs, sm, md, lg, xl)
-- Layout values (container width, header height, border radius)
-- Transitions (speed, easing)
+**Template 3 (Moonlit Pages)**:
+- "Book of the Month" featured section
+- Sticky minimalist header on scroll
 
-### styles.css
-Main stylesheet structure:
-1. CSS reset/normalize
-2. Base typography and body styles
-3. Layout utilities
-4. Component styles
-5. Page-specific styles
-6. Responsive media queries (mobile-first)
+## CSS Architecture
 
-## JavaScript Organization
+### variables.css Structure
 
-### script.js
-Main JavaScript file includes:
-- Mobile menu toggle functionality
-- Form validation functions
-- Newsletter modal logic
-- Carousel functionality (Template 1)
-- Sticky header behavior (Template 3)
+**ALWAYS define these CSS custom properties**:
 
-### Code Structure Pattern
+```css
+:root {
+  /* Brand Colors */
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F4E4C1;
+  --color-black-primary: #1A1A1A;
+  --color-black-secondary: #2C2C2C;
+  --color-cream-primary: #FFF8E7;
+  --color-cream-secondary: #F5F5DC;
+  
+  /* Typography */
+  --font-heading: 'Font Name', serif;
+  --font-body: 'Font Name', sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+  
+  /* Spacing Scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 80px;
+  --border-radius: 8px;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-easing: ease-in-out;
+}
+```
+
+**Rules**:
+- Use CSS variables for all colors, spacing, and typography
+- Never hardcode color values in styles.css
+- Update variables.css for theme customization
+
+### styles.css Organization
+
+**Follow this order**:
+
+1. CSS Reset/Normalize
+2. Base Styles (html, body, typography)
+3. Layout Utilities (.container, .grid, .flex)
+4. Component Styles (header, footer, cards, forms)
+5. Page-Specific Styles (homepage, blog, shop)
+6. Media Queries (mobile-first: 768px, 1024px, 1440px)
+
+**Naming Convention**: Use BEM-like class names
+- Block: `.blog-post-card`
+- Element: `.blog-post-card__title`
+- Modifier: `.blog-post-card--featured`
+
+## JavaScript Architecture
+
+### script.js Structure
+
+**Follow this pattern**:
+
 ```javascript
-// Configuration
+// 1. Configuration constants
 const CONFIG = {
   modalDelay: 5000,
-  carouselInterval: 5000
+  carouselInterval: 5000,
+  mobileBreakpoint: 768
 };
 
-// Utility functions
-function validateEmail(email) { ... }
-function showError(input, message) { ... }
+// 2. Utility functions
+function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
 
-// Component initialization
-function initMobileMenu() { ... }
-function initNewsletterModal() { ... }
-function initForms() { ... }
+function showError(input, message) {
+  // Error display logic
+}
 
-// Initialize on DOM ready
+// 3. Component initialization functions
+function initMobileMenu() {
+  // Mobile menu toggle logic
+}
+
+function initNewsletterModal() {
+  // Modal display and localStorage logic
+}
+
+function initForms() {
+  // Form validation and submission
+}
+
+// 4. Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initNewsletterModal();
@@ -162,19 +270,49 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## Asset Management
+**Rules**:
+- Use vanilla JavaScript only (no jQuery, React, Vue)
+- Use ES6+ features (const/let, arrow functions, template literals)
+- Use event delegation for dynamic content
+- Progressive enhancement (core functionality works without JS)
+- Add comments for complex logic
 
-### Images
-- **Logo**: 200x200px PNG with transparent background
-- **Blog featured images**: 1200x630px (Open Graph optimized)
-- **Book covers**: 400x600px (2:3 aspect ratio)
-- **Social icons**: SVG format with gold accents
-- **Placeholders**: Provided in each template for reference
+## Asset Specifications
 
-### Fonts
-- Loaded via Google Fonts CDN (preferred)
-- Or self-hosted in `assets/fonts/` directory
+### Image Requirements
+
+**Logo**:
+- Format: SVG (preferred) or PNG with transparency
+- Dimensions: 200x200px
+- Location: `assets/images/logo.svg`
+
+**Blog Featured Images**:
+- Dimensions: 1200x630px (Open Graph optimized)
+- Format: JPG or PNG
+- Max size: 500KB
+
+**Book Covers**:
+- Aspect ratio: 2:3 (e.g., 400x600px)
+- Format: JPG or PNG
+- Max size: 200KB
+
+**Social Icons**:
+- Format: SVG only
+- Style: Gold accents matching brand
+- Icons needed: Instagram, TikTok, Goodreads
+
+### Font Loading
+
+**Preferred**: Google Fonts CDN
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=[Font+Name]&display=swap" rel="stylesheet">
+```
+
+**Alternative**: Self-hosted in `assets/fonts/`
 - Always include fallback font stacks
+- Use `font-display: swap` for performance
 
 ## Template Independence
 

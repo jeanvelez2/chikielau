@@ -1,62 +1,78 @@
-/* ============================================
+/* ===================================
    CSS Custom Properties (Variables)
    Template 2: Celestial Bookshelf
-   ============================================ */
+   Dramatic dark celestial theme with gold highlights
+   
+   CUSTOMIZATION GUIDE:
+   - To change colors: Update the color values in the Brand Colors section
+   - To adjust spacing: Modify the Spacing Scale values
+   - To change fonts: Update font-primary and font-secondary with your Google Fonts
+   - All values use CSS custom properties for easy theme customization
+   =================================== */
 
 :root {
-  /* ============================================
-     Brand Colors
-     ============================================ */
-  
-  /* Gold Tones */
-  --color-gold-primary: #D4AF37;
-  --color-gold-light: #F4E4C1;
-  
-  /* Black Tones (Primary for Template 2) */
+  /* ===== Brand Colors ===== */
+  /* Primary blacks - deep, dramatic backgrounds */
   --color-black-primary: #1A1A1A;
   --color-black-secondary: #2C2C2C;
+  --color-black-tertiary: #2C2C2C;  /* Changed from #3A3A3A to approved brand color */
   
-  /* Cream/Ivory Tones */
+  /* Gold accents - celestial highlights */
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F4E4C1;
+  --color-gold-dark: #D4AF37;  /* Changed from #B8941F to approved brand color */
+  
+  /* Cream tones - for text and subtle accents */
   --color-cream-primary: #FFF8E7;
   --color-cream-secondary: #F5F5DC;
   
-  /* Warm Neutrals */
+  /* Warm neutrals - supporting colors */
   --color-neutral-warm-1: #D7CCC8;
   --color-neutral-warm-2: #BCAAA4;
   
-  /* ============================================
-     Typography
-     ============================================ */
+  /* Semantic colors */
+  --color-text-primary: #FFF8E7;
+  --color-text-secondary: #D7CCC8;
+  --color-text-muted: #BCAAA4;
+  --color-background-primary: #1A1A1A;
+  --color-background-secondary: #2C2C2C;
+  --color-background-tertiary: #2C2C2C;  /* Changed from #3A3A3A to approved brand color */
+  --color-accent: #D4AF37;
+  --color-error: #D4AF37;  /* Changed from #E57373 to gold for brand consistency */
+  --color-success: #D4AF37;  /* Changed from #81C784 to gold for brand consistency */
   
-  /* Font Families */
-  --font-primary: 'Cinzel', serif;
-  --font-secondary: 'Raleway', sans-serif;
+  /* ===== Typography ===== */
+  /* Font families */
+  --font-primary: 'Playfair Display', Georgia, serif;
+  --font-secondary: 'Lato', 'Helvetica Neue', Arial, sans-serif;
   
-  /* Font Sizes */
+  /* Font sizes - mobile-first base */
   --font-size-base: 16px;
-  --font-size-small: 0.875rem;
-  --font-size-h1: 2.5rem;
-  --font-size-h2: 2rem;
-  --font-size-h3: 1.5rem;
-  --font-size-h4: 1.25rem;
-  --font-size-h5: 1.125rem;
-  --font-size-h6: 1rem;
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-md: 1rem;         /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
   
-  /* Line Heights */
+  /* Heading sizes - mobile */
+  --font-size-h1: 2rem;         /* 32px */
+  --font-size-h2: 1.75rem;      /* 28px */
+  --font-size-h3: 1.5rem;       /* 24px */
+  --font-size-h4: 1.25rem;      /* 20px */
+  --font-size-h5: 1.125rem;     /* 18px */
+  --font-size-h6: 1rem;         /* 16px */
+  
+  /* Line heights */
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
   --line-height-tight: 1.4;
   
-  /* Font Weights */
+  /* Font weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
-  --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   
-  /* ============================================
-     Spacing Scale
-     ============================================ */
-  
+  /* ===== Spacing Scale ===== */
   --spacing-xs: 0.5rem;    /* 8px */
   --spacing-sm: 1rem;      /* 16px */
   --spacing-md: 1.5rem;    /* 24px */
@@ -65,48 +81,97 @@
   --spacing-2xl: 4rem;     /* 64px */
   --spacing-3xl: 6rem;     /* 96px */
   
-  /* ============================================
-     Layout
-     ============================================ */
-  
+  /* ===== Layout ===== */
   --container-max-width: 1200px;
-  --container-padding: var(--spacing-md);
+  --container-padding: 1rem;
   --header-height: 80px;
-  --footer-padding: var(--spacing-xl);
+  --footer-min-height: 300px;
   
-  /* ============================================
-     Border and Radius
-     ============================================ */
+  /* Grid and columns */
+  --grid-gap: 2rem;
+  --grid-gap-sm: 1rem;
   
+  /* ===== Border and Radius ===== */
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-width: 1px;
   --border-width-thick: 2px;
   
-  /* ============================================
-     Shadows
-     ============================================ */
+  /* ===== Shadows ===== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 12px rgba(212, 175, 55, 0.3);
   
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
-  
-  /* ============================================
-     Transitions
-     ============================================ */
-  
+  /* ===== Transitions ===== */
   --transition-speed-fast: 0.15s;
   --transition-speed: 0.3s;
   --transition-speed-slow: 0.5s;
   --transition-easing: ease-in-out;
+  --transition-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* ============================================
-     Z-Index Scale
-     ============================================ */
-  
+  /* ===== Z-index Scale ===== */
   --z-index-dropdown: 100;
   --z-index-sticky: 200;
-  --z-index-modal-backdrop: 900;
-  --z-index-modal: 1000;
+  --z-index-fixed: 300;
+  --z-index-modal-backdrop: 400;
+  --z-index-modal: 500;
+  --z-index-tooltip: 600;
+  
+  /* ===== Form Elements ===== */
+  --input-height: 48px;
+  --input-padding: 0.75rem 1rem;
+  --input-border-color: #2C2C2C;  /* Changed from #3A3A3A to approved brand color */
+  --input-focus-border-color: #D4AF37;
+  --input-background: #2C2C2C;
+  --input-text-color: #FFF8E7;
+  
+  /* ===== Buttons ===== */
+  --button-height: 48px;
+  --button-padding: 0.75rem 2rem;
+  --button-border-radius: 4px;
+  
+  /* ===== Breakpoints (for reference in media queries) ===== */
+  /* These are used in @media queries, not as CSS variables */
+  /* --breakpoint-xs: 320px; */
+  /* --breakpoint-sm: 576px; */
+  /* --breakpoint-md: 768px; */
+  /* --breakpoint-lg: 1024px; */
+  /* --breakpoint-xl: 1440px; */
+  /* --breakpoint-2xl: 1920px; */
+}
+
+/* ===== Responsive Typography Adjustments ===== */
+/* Tablet and up */
+@media (min-width: 768px) {
+  :root {
+    --font-size-base: 18px;
+    --font-size-h1: 3rem;      /* 48px */
+    --font-size-h2: 2.5rem;    /* 40px */
+    --font-size-h3: 2rem;      /* 32px */
+    --font-size-h4: 1.5rem;    /* 24px */
+    --font-size-h5: 1.25rem;   /* 20px */
+    --container-padding: 2rem;
+    --grid-gap: 2.5rem;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-h1: 3.5rem;    /* 56px */
+    --font-size-h2: 3rem;      /* 48px */
+    --font-size-h3: 2.25rem;   /* 36px */
+    --spacing-3xl: 8rem;       /* 128px */
+    --container-padding: 3rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  :root {
+    --font-size-h1: 4rem;      /* 64px */
+    --container-padding: 4rem;
+  }
 }

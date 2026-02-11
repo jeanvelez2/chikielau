@@ -1,0 +1,42 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2C2C2C"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad4" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A1A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2C2C2C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#grad4)"/>
+  <circle cx="600" cy="315" r="350" fill="url(#glow4)"/>
+  
+  <!-- Space elements -->
+  <circle cx="300" cy="150" r="40" fill="#D4AF37" opacity="0.2"/>
+  <circle cx="900" cy="480" r="30" fill="#F4E4C1" opacity="0.15"/>
+  <circle cx="1050" cy="200" r="25" fill="#D4AF37" opacity="0.2"/>
+  
+  <!-- Stars -->
+  <text x="450" y="120" font-family="Arial" font-size="20" fill="#F4E4C1" opacity="0.6">★</text>
+  <text x="750" y="180" font-family="Arial" font-size="16" fill="#D4AF37" opacity="0.5">★</text>
+  <text x="200" y="400" font-family="Arial" font-size="24" fill="#F4E4C1" opacity="0.4">★</text>
+  <text x="1000" y="350" font-family="Arial" font-size="18" fill="#D4AF37" opacity="0.5">★</text>
+  
+  <!-- Rocket/spacecraft simple icon -->
+  <path d="M 600 220 L 580 280 L 600 260 L 620 280 Z" fill="#D4AF37" opacity="0.6"/>
+  <rect x="590" y="260" width="20" height="80" fill="#D4AF37" opacity="0.6"/>
+  <path d="M 580 340 L 590 360 L 590 340 Z" fill="#F4E4C1" opacity="0.4"/>
+  <path d="M 620 340 L 610 360 L 610 340 Z" fill="#F4E4C1" opacity="0.4"/>
+  <circle cx="600" cy="285" r="4" fill="#FFF8E7"/>
+  
+  <!-- Text -->
+  <text x="600" y="430" font-family="Georgia, serif" font-size="32" fill="#FFF8E7" text-anchor="middle" font-weight="bold">Project Hail Mary</text>
+  <text x="600" y="470" font-family="Arial, sans-serif" font-size="20" fill="#D4AF37" text-anchor="middle">Science Fiction Adventure</text>
+</svg>

@@ -32,6 +32,7 @@ describe('Currently Reading Section - Unit Tests', () => {
     document = dom.window.document;
     section = document.querySelector('.currently-reading-section');
   });
+
   
   describe('Section Structure', () => {
     it('should have a Currently Reading section on the homepage', () => {
@@ -49,6 +50,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       assert.ok(card, 'Reading card should exist');
     });
   });
+
   
   describe('Book Information', () => {
     it('should display book cover image', () => {
@@ -78,6 +80,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       assert.ok(bookTitle, 'Book should have h2 heading');
     });
   });
+
   
   describe('Reading Progress Bar', () => {
     it('should have a progress bar container', () => {
@@ -126,6 +129,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       }
     });
   });
+
   
   describe('Reading Thoughts', () => {
     it('should have a reading thoughts section', () => {
@@ -139,6 +143,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       assert.ok(thoughts.textContent.trim().length > 0, 'Thoughts should have content');
     });
   });
+
   
   describe('Responsive Layout Structure', () => {
     it('should have reading-image and reading-info containers for responsive layout', () => {
@@ -162,6 +167,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       assert.ok(thoughts, 'Thoughts should be in reading-info');
     });
   });
+
   
   describe('CSS Classes', () => {
     it('should have all required CSS classes for styling', () => {
@@ -184,6 +190,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Content Quality', () => {
     it('should have descriptive alt text for book cover', () => {
@@ -202,6 +209,7 @@ describe('Currently Reading Section - Unit Tests', () => {
       assert.ok(!thoughtText.toLowerCase().includes('lorem ipsum'), 'Should not contain Lorem Ipsum placeholder');
     });
   });
+
   
   describe('Integration with Page', () => {
     it('should be positioned after the carousel section', () => {

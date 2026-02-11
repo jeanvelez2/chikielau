@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Chikielau. Reach out for collaborations, questions, or just to chat about books.">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Contact - Chikielau">
+  <meta property="og:description" content="Get in touch with Chikielau. Reach out for collaborations, questions, or just to chat about books.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:type" content="website">
+  
+  <title>Contact - Chikielau</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo.svg" alt="Chikielau Logo">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </header>
+  
+  <main id="main-content">
+    <section class="contact-page">
+      <div class="container-narrow">
+        <div class="page-header">
+          <h1>Get in Touch</h1>
+          <p class="page-intro">
+            I'd love to hear from you! Whether you have a question, want to discuss a book, or are interested 
+            in collaboration opportunities, feel free to reach out.
+          </p>
+        </div>
+
+        <div class="contact-content">
+          <div class="contact-info">
+            <h2>Let's Connect</h2>
+            <p>
+              Fill out the form below and I'll get back to you as soon as possible. You can also find me on 
+              social media—I'm always happy to chat about books!
+            </p>
+            <div class="contact-social">
+              <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" class="social-link">
+                <img src="assets/images/icons/instagram.svg" alt="">
+                <span>@chikielau</span>
+              </a>
+              <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" class="social-link">
+                <img src="assets/images/icons/tiktok.svg" alt="">
+                <span>@chikielau</span>
+              </a>
+              <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" class="social-link">
+                <img src="assets/images/icons/goodreads.svg" alt="">
+                <span>Chikielau</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" action="#" method="post">
+            <div class="form-group">
+              <label for="name">Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required>
+              <span class="error-message" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required>
+              <span class="error-message" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject">
+              <span class="error-message" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="6" required></textarea>
+              <span class="error-message" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn-gold">Send Message</button>
+            <div class="success-message" role="status"></div>
+          </form>
+
+          <div class="contact-note">
+            <h3>What to Expect</h3>
+            <p>
+              I typically respond to messages within 2-3 business days. If you're reaching out about a collaboration 
+              or partnership, please include relevant details about your proposal in your message.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-newsletter">
+        <h3>Join My Book Club</h3>
+        <p>Get weekly book recommendations and exclusive content delivered to your inbox.</p>
+        <form class="newsletter-form" action="#" method="post">
+          <div class="form-group">
+            <label for="footer-email" class="sr-only">Email address</label>
+            <input type="email" id="footer-email" name="email" placeholder="Your email address" required aria-label="Email address">
+            <span class="error-message" role="alert"></span>
+          </div>
+          <button type="submit" class="btn-gold">Subscribe</button>
+          <div class="success-message" role="status"></div>
+        </form>
+      </div>
+      <div class="footer-social">
+        <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+          <img src="assets/images/icons/instagram.svg" alt="">
+        </a>
+        <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" aria-label="Follow us on TikTok">
+          <img src="assets/images/icons/tiktok.svg" alt="">
+        </a>
+        <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" aria-label="Follow us on Goodreads">
+          <img src="assets/images/icons/goodreads.svg" alt="">
+        </a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2026 Chikielau. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Newsletter Modal -->
+  <div id="newsletterModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-body">
+        <h2 id="modalTitle">Join the Book Club</h2>
+        <p id="modalDescription">Get weekly book recommendations and exclusive content delivered to your inbox!</p>
+        <form class="modal-form" action="#" method="post">
+          <div class="form-group">
+            <label for="modal-email-contact" class="sr-only">Email address</label>
+            <input type="email" id="modal-email-contact" name="email" placeholder="Your email address" required aria-label="Email address">
+            <span class="error-message" role="alert"></span>
+          </div>
+          <button type="submit" class="btn-gold">Subscribe</button>
+          <div class="success-message" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+</html>

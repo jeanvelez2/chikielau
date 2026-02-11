@@ -32,6 +32,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
     document = dom.window.document;
     section = document.querySelector('.featured-posts-section');
   });
+
   
   describe('Section Structure', () => {
     it('should have a featured posts section on the homepage', () => {
@@ -49,6 +50,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       assert.ok(grid, 'Posts grid should exist');
     });
   });
+
   
   describe('Blog Post Cards', () => {
     it('should have 3-4 blog post cards', () => {
@@ -79,6 +81,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Post Card Images', () => {
     it('each card should have a featured image', () => {
@@ -111,6 +114,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Post Card Titles', () => {
     it('each card should have a title with proper heading level', () => {
@@ -146,6 +150,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Post Card Meta Information', () => {
     it('each card should have publication date', () => {
@@ -181,6 +186,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Post Card Excerpts', () => {
     it('each card should have an excerpt', () => {
@@ -211,6 +217,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Read More Links', () => {
     it('each card should have a Read More link', () => {
@@ -243,6 +250,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       });
     });
   });
+
   
   describe('Responsive Grid Layout', () => {
     it('should use CSS Grid for layout', () => {
@@ -258,6 +266,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       assert.ok(cards.length >= 3, 'Post cards should be direct children of grid for proper layout');
     });
   });
+
   
   describe('CSS Classes', () => {
     it('should have all required CSS classes for styling', () => {
@@ -282,6 +291,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
         'Section should have featured-posts-section class');
     });
   });
+
   
   describe('Accessibility', () => {
     it('should use semantic article elements', () => {
@@ -310,6 +320,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       assert.ok(timeElements.length >= 3, 'Should use semantic time elements for dates');
     });
   });
+
   
   describe('Integration with Page', () => {
     it('should be positioned after the Currently Reading section', () => {
@@ -339,6 +350,7 @@ describe('Featured Blog Posts Section - Unit Tests', () => {
       assert.ok(container, 'Section should use container class for consistent layout');
     });
   });
+
   
   describe('Content Structure', () => {
     it('each post card should have proper content hierarchy', () => {
