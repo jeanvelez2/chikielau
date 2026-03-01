@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet Chikielau, your guide to the celestial world of books. Learn about my reading journey, favorite genres, and passion for sharing literary discoveries with fellow book lovers.">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="About Chikielau - Book Reviewer & Literary Enthusiast">
+  <meta property="og:description" content="Meet Chikielau, your guide to the celestial world of books. Learn about my reading journey and passion for literary discoveries.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chikielau.com/about.html">
+  
+  <title>About - Chikielau</title>
+  
+  <!-- Schema.org JSON-LD Markup for Person/ProfilePage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Chikielau",
+      "description": "Book reviewer, literary enthusiast, and your guide to the celestial world of books. Sharing honest reviews, star ratings, and curated recommendations.",
+      "url": "https://chikielau.com/about.html",
+      "sameAs": [
+        "https://instagram.com/chikielau",
+        "https://tiktok.com/@chikielau",
+        "https://goodreads.com/chikielau"
+      ],
+      "knowsAbout": ["Book Reviews", "Contemporary Fiction", "Fantasy", "Science Fiction", "Literary Analysis"]
+    }
+  }
+  </script>
+  
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://chikielau.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://chikielau.com/about.html"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css?v=11">
+  <link rel="stylesheet" href="css/styles.css?v=11">
+  
+  <style>
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background-color: #1A1A1A;
+      background-image: 
+        radial-gradient(circle, #D4AF37 3px, transparent 3px),
+        radial-gradient(circle, #F4E4C1 2px, transparent 2px),
+        radial-gradient(circle, #D4AF37 2px, transparent 2px),
+        radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px),
+        radial-gradient(circle, #F4E4C1 1px, transparent 1px),
+        radial-gradient(circle, #D4AF37 1px, transparent 1px),
+        radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
+      background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
+      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
+      opacity: 1;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+  </style>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/BORDE_LAU.png" alt="Chikielau Logo - Celestial book lover">
+        </a>
+      </div>
+      <nav class="main-nav" id="mainNav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="about.html" class="nav-link active" data-i18n="nav.about">About</a></li>
+          <li><a href="shop.html" class="nav-link" data-i18n="nav.shop">Shop</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="language-toggle">
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" data-i18n-aria="aria.toggle.nav" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-content">
+          <div class="about-hero-image">
+            <img src="assets/images/about.jpeg" alt="Chikielau reading in a cozy library setting">
+            <div class="celestial-accent" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="about-hero-text">
+            <h1 data-i18n="about.hero.title">Hello, I'm Chikielau</h1>
+            <p class="about-intro" data-i18n="about.hero.intro">Welcome to my celestial corner of the internet where darkness meets golden light. I'm a passionate book lover, reviewer, and your guide through the magical world of literature.</p>
+            <p class="about-tagline" data-i18n="about.hero.tagline">Let's explore the universe one page at a time ✨</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- My Story Section -->
+    <section class="about-story">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.story.title">My Story</h2>
+        <div class="story-content">
+          <p data-i18n="about.story.p1">My love affair with books began in childhood, curled up in my grandmother's library surrounded by the scent of old paper and the whisper of turning pages. That magical space, with its towering shelves and golden afternoon light, became my sanctuary—a place where I could travel to distant worlds, meet unforgettable characters, and discover truths about myself.</p>
+          
+          <p data-i18n="about.story.p2">Years later, I created Chikielau as a way to share that same magic with fellow book lovers. The name itself is a reflection of my journey—a blend of whimsy and wonder, much like the stories I cherish most. Here, I combine my passion for literature with my love of celestial aesthetics, creating a space that feels both timeless and enchanting.</p>
+          
+          <p data-i18n="about.story.p3">What started as a personal reading journal has blossomed into a community of kindred spirits who believe that books have the power to transform us. Through honest reviews, thoughtful recommendations, and genuine conversations about the stories that move us, I hope to help you discover your next favorite book.</p>
+          
+          <p data-i18n="about.story.p4">When I'm not reading (which is rare!), you'll find me sipping tea in cozy cafes, hunting for vintage bookmarks at antique shops, or photographing beautiful book covers for my Instagram. I believe that reading is not just a hobby—it's a way of life, a form of self-care, and a bridge that connects us all.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Reading Stats Section -->
+    <section class="reading-stats">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.stats.title">By the Numbers</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="stat-number">150+</div>
+            <div class="stat-label" data-i18n="about.stats.books">Books Read This Year</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="stat-number">4.2</div>
+            <div class="stat-label" data-i18n="about.stats.rating">Average Rating</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <div class="stat-number">12</div>
+            <div class="stat-label" data-i18n="about.stats.genres">Favorite Genres</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              </svg>
+            </div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label" data-i18n="about.stats.tbr">Books on TBR</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Favorite Genres Section -->
+    <section class="favorite-genres">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.genres.title">Favorite Genres</h2>
+        <p class="section-intro" data-i18n="about.genres.subtitle">While I'll read just about anything with a compelling story, these are the genres that truly make my heart sing:</p>
+        
+        <div class="genres-grid">
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.literary">Literary Fiction</h3>
+            <p data-i18n="about.genre.literary.text">Beautiful prose, complex characters, and stories that linger in your mind long after the final page. I'm drawn to books that explore the human condition with depth and nuance.</p>
+          </div>
+          
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.fantasy">Fantasy & Mythology</h3>
+            <p data-i18n="about.genre.fantasy.text">From epic high fantasy to intimate retellings of ancient myths, I love stories that transport me to magical realms and reimagine timeless tales with fresh perspectives.</p>
+          </div>
+          
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.historical">Historical Fiction</h3>
+            <p data-i18n="about.genre.historical.text">There's something magical about stepping into another era through the pages of a book. I especially love stories that shine a light on overlooked voices from history.</p>
+          </div>
+          
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.romance">Contemporary Romance</h3>
+            <p data-i18n="about.genre.romance.text">Give me all the swoon-worthy moments, witty banter, and heartfelt connections. I believe in the power of love stories that feel authentic and emotionally resonant.</p>
+          </div>
+          
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.magical">Magical Realism</h3>
+            <p data-i18n="about.genre.magical.text">The perfect blend of the ordinary and the extraordinary. I'm captivated by stories where magic weaves seamlessly into everyday life, creating something truly enchanting.</p>
+          </div>
+          
+          <div class="genre-card">
+            <h3 data-i18n="about.genre.memoir">Memoir & Essays</h3>
+            <p data-i18n="about.genre.memoir.text">Real stories from real people have a unique power to inspire and connect us. I'm always seeking memoirs that offer fresh perspectives and beautifully crafted personal essays.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Personal Touches Section -->
+    <section class="personal-touches">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.touches.title">A Few of My Favorite Things</h2>
+        <div class="touches-grid">
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.spot">📚 Reading Spot</h3>
+            <p data-i18n="about.touch.spot.text">A velvet armchair by the window with a soft throw blanket, a cup of Earl Grey tea, and natural light streaming in. Bonus points if it's raining outside.</p>
+          </div>
+          
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.time">🌙 Reading Time</h3>
+            <p data-i18n="about.touch.time.text">Late evenings when the world is quiet, or lazy Sunday mornings when I can lose myself in a story for hours without interruption.</p>
+          </div>
+          
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.aesthetic">✨ Book Aesthetic</h3>
+            <p data-i18n="about.touch.aesthetic.text">Vintage hardcovers with gilded edges, celestial cover designs, and that perfect combination of beautiful typography and atmospheric illustrations.</p>
+          </div>
+          
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.pairing">☕ Perfect Pairing</h3>
+            <p data-i18n="about.touch.pairing.text">A good book deserves a good beverage. I'm a tea enthusiast with a collection of over 30 varieties, each carefully matched to different reading moods.</p>
+          </div>
+          
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.soundtrack">🎵 Reading Soundtrack</h3>
+            <p data-i18n="about.touch.soundtrack.text">Instrumental music, lo-fi beats, or complete silence depending on the book. For fantasy epics, I love cinematic soundtracks that enhance the atmosphere.</p>
+          </div>
+          
+          <div class="touch-item">
+            <h3 data-i18n="about.touch.community">💫 Book Community</h3>
+            <p data-i18n="about.touch.community.text">Connecting with fellow readers is one of my greatest joys. I love discussing plot twists, sharing recommendations, and celebrating our mutual love of stories.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section class="about-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2 data-i18n="about.cta.title">Let's Connect</h2>
+          <p data-i18n="about.cta.text">I'd love to hear from you! Whether you want to discuss your latest read, share a book recommendation, or just chat about all things literary, I'm always excited to connect with fellow book lovers.</p>
+          
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn-gold" data-i18n="about.cta.btn.contact">Get in Touch</a>
+            <a href="blog.html" class="btn-outline" data-i18n="about.cta.btn.reviews">Read My Reviews</a>
+          </div>
+          
+          <div class="social-follow">
+            <p class="social-intro" data-i18n="about.cta.social">Follow my reading journey on social media:</p>
+            <div class="social-icons-large">
+              <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram" class="social-link">
+                <img src="assets/images/icons/instagram.svg" alt="">
+                <span>Instagram</span>
+              </a>
+              <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok" class="social-link">
+                <img src="assets/images/icons/tiktok.svg" alt="">
+                <span>TikTok</span>
+              </a>
+              <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads" class="social-link">
+                <img src="assets/images/icons/goodreads.svg" alt="">
+                <span>Goodreads</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-newsletter">
+          <h3 data-i18n="footer.newsletter.title">Join My Book Club</h3>
+          <p data-i18n="footer.newsletter.text">Get weekly book recommendations and exclusive content delivered to your inbox!</p>
+          <form class="newsletter-form" action="#" method="post">
+            <div class="form-group">
+              <label for="footer-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
+              <input type="email" id="footer-email" name="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+              <button type="submit" class="btn-gold" data-i18n="footer.newsletter.btn">Subscribe</button>
+            </div>
+            <span class="error-message" role="alert"></span>
+            <span class="success-message" role="status"></span>
+          </form>
+        </div>
+        
+        <div class="footer-social">
+          <h3 data-i18n="footer.social.title">Follow Me</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
+              <img src="assets/images/icons/instagram.svg" alt="">
+            </a>
+            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
+              <img src="assets/images/icons/tiktok.svg" alt="">
+            </a>
+            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
+              <img src="assets/images/icons/goodreads.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-info">
+        <p data-i18n="footer.copyright">&copy; 2026 Chikielau. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Newsletter Modal -->
+  <div class="modal-overlay" id="newsletterModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+    <div class="modal-content">
+      <button class="modal-close" data-i18n-aria="aria.close.modal" aria-label="Close newsletter signup modal">&times;</button>
+      <div class="modal-body">
+        <h2 id="modalTitle" data-i18n="modal.title">Join the Book Club</h2>
+        <p id="modalDescription" data-i18n="modal.description">Get weekly book recommendations and exclusive content delivered straight to your inbox!</p>
+        <form class="modal-form" action="#" method="post">
+          <div class="form-group">
+            <label for="modal-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
+            <input type="email" id="modal-email" name="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+          </div>
+          <button type="submit" class="btn-gold" data-i18n="modal.btn.subscribe">Subscribe</button>
+          <span class="error-message" role="alert"></span>
+          <span class="success-message" role="status"></span>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script src="js/translations.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
