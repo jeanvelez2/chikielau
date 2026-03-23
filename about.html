@@ -64,7 +64,7 @@
   
   <!-- CSS -->
   <link rel="stylesheet" href="css/variables.css?v=12">
-  <link rel="stylesheet" href="css/styles.min.css?v=16">
+  <link rel="stylesheet" href="css/styles.min.css?v=18">
   
   <!-- Google Fonts -->
   <link rel="stylesheet" href="css/fonts.css?v=12">
@@ -125,7 +125,7 @@
     </section>
     
     <!-- My Story Section -->
-    <section class="about-story">
+    <section class="about-story reveal">
       <div class="container">
         <h2 class="section-title" data-i18n="about.story.title">My Story</h2>
         <div class="story-content">
@@ -141,10 +141,10 @@
     </section>
     
     <!-- Reading Stats Section -->
-    <section class="reading-stats">
+    <section class="reading-stats reveal">
       <div class="container">
         <h2 class="section-title" data-i18n="about.stats.title">By the Numbers</h2>
-        <div class="stats-grid">
+        <div class="stats-grid reveal-child">
           <div class="stat-card">
             <div class="stat-icon" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -191,13 +191,24 @@
       </div>
     </section>
     
+    <!-- Currently Reading & Challenge -->
+    <section class="reading-stats reveal" id="readingStatus">
+      <div class="container">
+        <h2 class="section-title">Currently Reading</h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="currently-reading" id="currentlyReading"></div>
+          <div class="reading-challenge" id="readingChallenge"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Favorite Genres Section -->
-    <section class="favorite-genres">
+    <section class="favorite-genres reveal">
       <div class="container">
         <h2 class="section-title" data-i18n="about.genres.title">Favorite Genres</h2>
         <p class="section-intro" data-i18n="about.genres.subtitle">While I'll read just about anything with a compelling story, these are the genres that truly make my heart sing:</p>
         
-        <div class="genres-grid">
+        <div class="genres-grid reveal-child">
           <div class="genre-card">
             <h3 data-i18n="about.genre.literary">Literary Fiction</h3>
             <p data-i18n="about.genre.literary.text">Beautiful prose, complex characters, and stories that linger in your mind long after the final page. I'm drawn to books that explore the human condition with depth and nuance.</p>
@@ -232,10 +243,10 @@
     </section>
     
     <!-- Personal Touches Section -->
-    <section class="personal-touches">
+    <section class="personal-touches reveal">
       <div class="container">
         <h2 class="section-title" data-i18n="about.touches.title">A Few of My Favorite Things</h2>
-        <div class="touches-grid">
+        <div class="touches-grid reveal-child">
           <div class="touch-item">
             <h3 data-i18n="about.touch.spot">📚 Reading Spot</h3>
             <p data-i18n="about.touch.spot.text">A velvet armchair by the window with a soft throw blanket, a cup of Earl Grey tea, and natural light streaming in. Bonus points if it's raining outside.</p>
@@ -364,6 +375,6 @@
   <noscript><p style="text-align:center;color:#FFF8E7;padding:2rem;">This site works best with JavaScript enabled.</p></noscript>
   <!-- JavaScript -->
   <script src="js/translations.js?v=1" defer></script>
-  <script src="js/script.js?v=1" defer></script>
+  <script src="js/script.js?v=2" defer></script>
 </body>
 </html>

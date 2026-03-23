@@ -418,3 +418,140 @@ async function submitContactForm(form) {
   });
   nav.insertBefore(btn, nav.firstChild);
 })();
+
+// R10: Scroll reveal
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .reveal-child').forEach(el => io.observe(el));
+})();
+
+// R10: Stat counter
+(function() {
+  const nums = document.querySelectorAll('.stat-number');
+  if (!nums.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const raw = e.target.textContent.trim();
+      const suffix = raw.replace(/[\d.]/g, '');
+      const target = parseFloat(raw);
+      if (isNaN(target)) return;
+      const isFloat = raw.includes('.');
+      const dur = 1200;
+      const start = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const v = target * ease;
+        e.target.textContent = (isFloat ? v.toFixed(1) : Math.round(v)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(el => io.observe(el));
+})();
+
+// R10: Back to top
+(function() {
+  const btn = document.createElement('button');
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '&#8593;';
+  document.body.appendChild(btn);
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { btn.classList.toggle('visible', window.scrollY > 400); ticking = false; }); }
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+// R10 #10: Hero typing effect
+(function() {
+  const el = document.querySelector('.hero-tagline');
+  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const allPhrases = {
+    en: ['A celestial journey through contemporary fiction, fantasy, and literary adventures', 'Where the stars meet stories', 'Exploring worlds, one page at a time'],
+    es: ['Un viaje celestial a través de la ficción contemporánea, fantasía y aventuras literarias', 'Donde las estrellas se encuentran con las historias', 'Explorando mundos, una página a la vez']
+  };
+  function getLang() { return (document.documentElement.lang || 'en').startsWith('es') ? 'es' : 'en'; }
+  let phrases = allPhrases[getLang()];
+  let pi = 0, ci = 0, deleting = false, tid;
+  if (el.hasAttribute('data-i18n')) el.removeAttribute('data-i18n');
+  const cursor = document.createElement('span');
+  cursor.className = 'typed-cursor';
+  cursor.textContent = '|';
+  el.after(cursor);
+  function tick() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { tid = setTimeout(() => { deleting = true; tick(); }, 2500); return; }
+      tid = setTimeout(tick, 50);
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; tid = setTimeout(tick, 400); return; }
+      tid = setTimeout(tick, 30);
+    }
+  }
+  el.textContent = '';
+  tick();
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => {
+    clearTimeout(tid); phrases = allPhrases[getLang()]; pi = 0; ci = 0; deleting = false; el.textContent = ''; tick();
+  }));
+})();
+
+// R10 #11: Mobile carousel
+(function() {
+  if (window.innerWidth >= 768) return;
+  document.querySelectorAll('.posts-grid').forEach(g => g.classList.add('carousel'));
+})();
+
+// R10 #12-13: Currently reading + reading challenge
+(function() {
+  const crEl = document.getElementById('currentlyReading');
+  const rcEl = document.getElementById('readingChallenge');
+  if (!crEl && !rcEl) return;
+  fetch('data/reading-status.json').then(r => r.json()).then(data => {
+    if (crEl && data.currentlyReading) {
+      const b = data.currentlyReading;
+      crEl.innerHTML = `<img src="${b.cover}" alt="${b.title}" width="60" height="90"><div class="currently-reading-info"><h4>${b.title}</h4><p>${b.author}</p><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><div class="progress-label">${b.progress}% complete</div></div>`;
+      requestAnimationFrame(() => { crEl.querySelector('.progress-fill').style.width = b.progress + '%'; });
+    }
+    if (rcEl && data.readingChallenge) {
+      const c = data.readingChallenge;
+      const pct = Math.min(100, Math.round(c.read / c.goal * 100));
+      rcEl.innerHTML = `<h4>📚 ${c.year} Reading Challenge</h4><div class="challenge-bar"><div class="challenge-fill" style="width:0%"></div></div><div class="challenge-label">${c.read} of ${c.goal} books (${pct}%)</div>`;
+      requestAnimationFrame(() => { rcEl.querySelector('.challenge-fill').style.width = pct + '%'; });
+    }
+  }).catch(() => {});
+})();
+
+// R10 #14: Image blur-up
+(function() {
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) { img.classList.add('loaded'); return; }
+    img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+  });
+})();
+
+// R10 #15: Cursor sparkle (desktop only, respects reduced motion)
+(function() {
+  if ('ontouchstart' in window || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let last = 0;
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - last < 80) return;
+    last = now;
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = e.clientX - 3 + 'px';
+    s.style.top = e.clientY - 3 + 'px';
+    document.body.appendChild(s);
+    requestAnimationFrame(() => s.classList.add('fade'));
+    setTimeout(() => s.remove(), 600);
+  });
+})();

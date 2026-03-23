@@ -1,0 +1,13 @@
+{
+  "currentlyReading": {
+    "title": "The House in the Cerulean Sea",
+    "author": "TJ Klune",
+    "progress": 65,
+    "cover": "assets/images/placeholders/book-cover-1.svg"
+  },
+  "readingChallenge": {
+    "year": 2026,
+    "goal": 52,
+    "read": 42
+  }
+}

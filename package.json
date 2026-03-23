@@ -12,8 +12,8 @@
     "minify:css": "npx clean-css-cli -o css/styles.min.css css/styles.css"
   },
   "dependencies": {
-    "@upstash/ratelimit": "^2.0.5",
-    "@upstash/redis": "^1.34.3",
-    "nodemailer": "^6.9.7"
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
+    "nodemailer": "^8.0.3"
   }
 }
