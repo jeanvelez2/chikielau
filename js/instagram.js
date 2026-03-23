@@ -175,6 +175,7 @@ class InstagramFeed {
     this.container.innerHTML = `
       <div class="instagram-error">
         <p>${message || this.options.errorText}</p>
+        <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" class="btn-outline" style="margin-top:1rem;display:inline-block;">Visit Instagram</a>
       </div>
     `;
   }
@@ -192,7 +193,7 @@ class InstagramFeed {
    * Refresh the feed
    */
   async refresh() {
-    localStorage.removeItem(this.options.cacheKey);
+    try { localStorage.removeItem(this.options.cacheKey); } catch {}
     await this.init();
   }
 }

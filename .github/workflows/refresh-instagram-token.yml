@@ -2,35 +2,48 @@ name: Refresh Instagram Token
 
 on:
   schedule:
-    # Runs on the 1st of every month at 00:00 UTC
     - cron: '0 0 1 * *'
-  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+permissions: {}
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-24.04
+
     steps:
       - name: Refresh Instagram Token
+        id: refresh
+        env:
+          DEPLOYMENT_URL: ${{ secrets.VERCEL_DEPLOYMENT_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          response=$(curl -s -w "\n%{http_code}" -X POST ${{ secrets.VERCEL_DEPLOYMENT_URL }}/api/cron-refresh \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+          response=$(curl -s -w "\n%{http_code}" --max-time 30 -X POST "${DEPLOYMENT_URL}/api/cron-refresh" \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
             -H "Content-Type: application/json")
-          
+
           http_code=$(echo "$response" | tail -n1)
           body=$(echo "$response" | sed '$d')
-          
+
           echo "HTTP Status: $http_code"
           echo "Response: $body"
-          
+
           if [ "$http_code" -ne 200 ]; then
             echo "::error::Token refresh failed with status $http_code"
             exit 1
           fi
-          
+
           echo "::notice::Instagram token refreshed successfully"
-      
-      - name: Notify on failure
-        if: failure()
+
+      - name: Health Check
+        if: always()
+        env:
+          DEPLOYMENT_URL: ${{ secrets.VERCEL_DEPLOYMENT_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          echo "::error::Failed to refresh Instagram token. Please check the logs and refresh manually if needed."
+          response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "${DEPLOYMENT_URL}/api/health" \
+            -H "Authorization: Bearer ${CRON_SECRET}")
+          echo "Health check status: $response"
+          if [ "$response" -ne 200 ]; then
+            echo "::warning::Health check returned $response"
+          fi

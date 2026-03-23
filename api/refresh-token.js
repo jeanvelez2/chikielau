@@ -1,45 +1,25 @@
 /**
- * Vercel Serverless Function - Instagram Token Refresh
- * Automatically refreshes Instagram access token before expiration
- * 
- * Environment Variables Required:
- * - INSTAGRAM_ACCESS_TOKEN: Current Instagram access token
- * - INSTAGRAM_TOKEN_SECRET: Secret key to protect this endpoint
- * 
- * This endpoint should be called by a cron job every 30 days
+ * Manual Instagram Token Refresh endpoint.
  */
 
+import { safeCompare } from './_lib/config.js';
+
 export default async function handler(req, res) {
-  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Verify secret to prevent unauthorized access
   const secret = req.headers['x-refresh-secret'] || req.body?.secret;
   const expectedSecret = process.env.INSTAGRAM_TOKEN_SECRET;
-  
-  if (!expectedSecret) {
-    console.error('INSTAGRAM_TOKEN_SECRET not configured');
-    return res.status(500).json({ 
-      error: 'Token refresh not configured',
-      message: 'Please set INSTAGRAM_TOKEN_SECRET in environment variables'
-    });
-  }
-  
-  if (secret !== expectedSecret) {
-    console.error('Invalid refresh secret provided');
+
+  if (!expectedSecret || !safeCompare(secret || '', expectedSecret)) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
   const currentToken = process.env.INSTAGRAM_ACCESS_TOKEN;
-  
   if (!currentToken) {
     console.error('INSTAGRAM_ACCESS_TOKEN not configured');
-    return res.status(500).json({ 
-      error: 'Instagram API not configured',
-      message: 'Please set INSTAGRAM_ACCESS_TOKEN in environment variables'
-    });
+    return res.status(500).json({ error: 'Not configured' });
   }
 
   try {
@@ -55,31 +35,26 @@ export default async function handler(req, res) {
       console.error('Instagram token refresh error:', errorData);
       
       return res.status(response.status).json({
-        error: 'Token refresh failed',
-        message: errorData.error?.message || 'Failed to refresh Instagram token',
-        details: errorData
+        error: 'Token refresh failed'
       });
     }
     
     const data = await response.json();
+    if (!data.access_token) return res.status(502).json({ error: 'No token in refresh response' });
     
     // Return the new token and expiration info
+    const days = data.expires_in ? Math.floor(data.expires_in / 86400) : null;
     return res.status(200).json({
       success: true,
       message: 'Token refreshed successfully',
-      newToken: data.access_token,
-      tokenType: data.token_type,
-      expiresIn: data.expires_in,
-      expiresInDays: Math.floor(data.expires_in / 86400),
-      instructions: 'Update INSTAGRAM_ACCESS_TOKEN environment variable with the newToken value in Vercel dashboard'
+      expiresIn: data.expires_in || null,
+      expiresInDays: days
     });
     
   } catch (error) {
     console.error('Error refreshing Instagram token:', error);
     return res.status(500).json({
-      error: 'Server error',
-      message: 'Failed to refresh Instagram token',
-      details: error.message
+      error: 'Failed to refresh Instagram token'
     });
   }
 }

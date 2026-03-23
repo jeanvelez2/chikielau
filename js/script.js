@@ -196,16 +196,17 @@ function initNewsletterModal() {
     }
   });
   
-  // Close modal when form is submitted
+  // Close modal when form is submitted successfully
   if (modalForm) {
     modalForm.addEventListener('submit', () => {
-      // Small delay to allow form validation to show
-      setTimeout(() => {
-        const hasErrors = modalForm.querySelector('.error-message[style*="display: block"]');
-        if (!hasErrors) {
-          closeModal();
+      const checkSuccess = setInterval(() => {
+        const msg = modalForm.querySelector('.success-message[style*="display: block"]');
+        if (msg && !msg.style.color) {
+          clearInterval(checkSuccess);
+          setTimeout(() => closeModal(), 3000);
         }
-      }, 100);
+      }, 200);
+      setTimeout(() => clearInterval(checkSuccess), 10000);
     });
   }
 }
@@ -217,7 +218,7 @@ function initForms() {
   const forms = document.querySelectorAll('form');
   
   forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       let isValid = true;
@@ -245,18 +246,56 @@ function initForms() {
           // Submit contact form to API
           submitContactForm(form);
         } else {
-          // Newsletter form - show success message
+          // Newsletter form - submit to API
+          const emailInput = form.querySelector('input[type="email"]');
           const successMessage = form.querySelector('.success-message');
-          if (successMessage) {
-            const translatedSuccess = window.languageManager ? window.languageManager.translate('form.success') : 'Thank you! Your submission was successful.';
-            successMessage.textContent = translatedSuccess;
-            successMessage.style.display = 'block';
-            form.reset();
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-              successMessage.style.display = 'none';
-            }, 5000);
+          // Determine source: modal, footer, or page
+          const isModal = !!form.closest('#newsletterModal');
+          const isFooter = !!form.closest('footer');
+          const source = isModal ? 'modal' : isFooter ? 'footer' : 'page';
+          try {
+            const emailVal = emailInput.value;
+            const res = await fetch('/api/newsletter-subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: emailVal, source })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            if (successMessage) {
+              successMessage.textContent = data.message || (window.languageManager ? window.languageManager.translate('form.success') : 'Thank you! Your submission was successful.');
+              successMessage.style.display = 'block';
+              form.reset();
+              // Show resend link if confirmation already pending
+              if (data.canResend) {
+                const resendLink = document.createElement('a');
+                resendLink.href = '#';
+                resendLink.textContent = ' Resend confirmation email';
+                resendLink.style.color = 'var(--color-gold-primary)';
+                resendLink.style.fontSize = '0.85rem';
+                resendLink.addEventListener('click', async (ev) => {
+                  ev.preventDefault();
+                  try {
+                    await fetch('/api/newsletter-subscribe', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ email: emailVal, source, resend: true })
+                    });
+                    resendLink.textContent = ' Confirmation resent!';
+                    resendLink.style.pointerEvents = 'none';
+                  } catch {}
+                });
+                successMessage.appendChild(resendLink);
+              }
+              setTimeout(() => { successMessage.style.display = 'none'; successMessage.textContent = ''; }, 8000);
+            }
+          } catch (err) {
+            if (successMessage) {
+              successMessage.textContent = err.message || 'Something went wrong. Please try again.';
+              successMessage.style.display = 'block';
+              successMessage.style.color = 'var(--color-error)';
+              setTimeout(() => { successMessage.style.display = 'none'; successMessage.style.color = ''; }, 5000);
+            }
           }
         }
       }
@@ -300,10 +339,12 @@ async function submitContactForm(form) {
     submitButton.textContent = window.languageManager ? window.languageManager.translate('form.sending') : 'Sending...';
     
     // Get form data
+    const topicEl = form.querySelector('#topic');
     const formData = {
       name: form.querySelector('#name').value,
       email: form.querySelector('#email').value,
-      message: form.querySelector('#message').value
+      message: form.querySelector('#message').value,
+      topic: topicEl ? topicEl.value : ''
     };
     
     // Send to API
@@ -323,7 +364,7 @@ async function submitContactForm(form) {
         const translatedSuccess = window.languageManager ? window.languageManager.translate('form.success') : 'Thank you! Your message has been sent successfully.';
         successMessage.textContent = translatedSuccess;
         successMessage.style.display = 'block';
-        successMessage.style.color = '#4CAF50';
+        successMessage.className = 'success-message success';
         form.reset();
         
         // Hide success message after 5 seconds
@@ -337,7 +378,7 @@ async function submitContactForm(form) {
         const translatedError = window.languageManager ? window.languageManager.translate('form.error.server') : 'Sorry, there was an error sending your message. Please try again.';
         successMessage.textContent = translatedError;
         successMessage.style.display = 'block';
-        successMessage.style.color = '#f44336';
+        successMessage.className = 'success-message error';
       }
     }
   } catch (error) {
@@ -348,7 +389,7 @@ async function submitContactForm(form) {
       const translatedError = window.languageManager ? window.languageManager.translate('form.error.network') : 'Network error. Please check your connection and try again.';
       successMessage.textContent = translatedError;
       successMessage.style.display = 'block';
-      successMessage.style.color = '#f44336';
+      successMessage.className = 'success-message error';
     }
   } finally {
     // Re-enable button
@@ -356,3 +397,24 @@ async function submitContactForm(form) {
     submitButton.textContent = originalButtonText;
   }
 }
+
+// Theme toggle
+(function() {
+  let saved;
+  try { saved = localStorage.getItem('theme'); } catch {}
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  const nav = document.querySelector('.nav-actions') || document.querySelector('.language-toggle')?.parentElement;
+  if (!nav) return;
+  const btn = document.createElement('button');
+  btn.className = 'theme-toggle';
+  btn.setAttribute('aria-label', 'Toggle light/dark mode');
+  btn.textContent = (saved === 'light') ? '🌙' : '☀️';
+  btn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const next = isLight ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    btn.textContent = isLight ? '☀️' : '🌙';
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+  nav.insertBefore(btn, nav.firstChild);
+})();

@@ -8,9 +8,15 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Contact Chikielau - Brand Partnerships & Collaborations">
   <meta property="og:description" content="Get in touch for brand partnerships, collaboration opportunities, or just to chat about books.">
-  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image" content="https://chikielau.com/assets/images/og-image.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://chikielau.com/contact.html">
+  <link rel="icon" type="image/png" href="assets/images/favicon-64.png">
+  <link rel="canonical" href="https://chikielau.com/contact.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Chikielau - Brand Partnerships & Collaborations">
+  <meta name="twitter:description" content="Get in touch for brand partnerships, collaboration opportunities, or just to chat about books.">
+  <meta name="twitter:image" content="https://chikielau.com/assets/images/og-image.jpg">
   
   <title>Contact - Chikielau</title>
   
@@ -56,53 +62,24 @@
   </script>
   
   <!-- CSS -->
-  <link rel="stylesheet" href="css/variables.css?v=11">
-  <link rel="stylesheet" href="css/styles.css?v=11">
-  
-  <style>
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #1A1A1A;
-      background-image: 
-        radial-gradient(circle, #D4AF37 3px, transparent 3px),
-        radial-gradient(circle, #F4E4C1 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px),
-        radial-gradient(circle, #F4E4C1 1px, transparent 1px),
-        radial-gradient(circle, #D4AF37 1px, transparent 1px),
-        radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
-      background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
-      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
-      opacity: 1;
-      animation: twinkle 3s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 1; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/variables.css?v=12">
+  <link rel="stylesheet" href="css/styles.min.css?v=16">
   
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css?v=12">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <header class="site-header">
+  <a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
     <div class="header-container">
       <div class="logo">
         <a href="index.html">
-          <img src="assets/images/BORDE_LAU.png" alt="Chikielau Logo - Celestial book lover">
+          <img src="assets/images/logo-200.webp" alt="Chikielau Logo - Celestial book lover" width="50" height="50">
         </a>
       </div>
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
           <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a></li>
@@ -112,7 +89,7 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <div class="language-toggle">
+        <div class="language-toggle" role="group" aria-label="Language selection">
           <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
           <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
         </div>
@@ -122,8 +99,9 @@
       </div>
     </div>
   </header>
+
   
-  <main>
+  <main id="main">
     <!-- Contact Hero Section -->
     <section class="contact-hero">
       <div class="container">
@@ -180,14 +158,25 @@
           <form class="contact-form" action="#" method="post">
             <div class="form-group">
               <label for="name" data-i18n="contact.form.name">Name <span class="required">*</span></label>
-              <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.name.placeholder" placeholder="Your name" required aria-required="true">
+              <input type="text" id="name" name="name" autocomplete="name" data-i18n-placeholder="contact.form.name.placeholder" placeholder="Your name" required aria-required="true">
               <span class="error-message" role="alert"></span>
             </div>
             
             <div class="form-group">
               <label for="email" data-i18n="contact.form.email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" data-i18n-placeholder="contact.form.email.placeholder" placeholder="your.email@example.com" required aria-required="true">
+              <input type="email" id="email" name="email" autocomplete="email" data-i18n-placeholder="contact.form.email.placeholder" placeholder="your.email@example.com" required aria-required="true">
               <span class="error-message" role="alert"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="topic" data-i18n="contact.form.topic">Topic</label>
+              <select id="topic" name="topic">
+                <option value="" data-i18n="contact.form.topic.placeholder">Select a topic...</option>
+                <option value="recommendations" data-i18n="contact.reason.recommendations">Book Recommendations</option>
+                <option value="collaboration" data-i18n="contact.reason.collaboration">Collaboration Inquiries</option>
+                <option value="questions" data-i18n="contact.reason.questions">General Questions</option>
+                <option value="reviews" data-i18n="contact.reason.reviews">Review Requests</option>
+              </select>
             </div>
             
             <div class="form-group">
@@ -209,7 +198,7 @@
             <p data-i18n="contact.info.text">Prefer social media? You can also find me on these platforms where I share daily bookish content, reading updates, and connect with the book community.</p>
             
             <div class="social-links">
-              <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" class="social-link" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
+              <a href="https://instagram.com/chikielau" target="_blank" rel="noopener noreferrer" class="social-link" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
                 <img src="assets/images/icons/instagram.svg" alt="">
                 <div class="social-link-text">
                   <strong>Instagram</strong>
@@ -217,7 +206,7 @@
                 </div>
               </a>
               
-              <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" class="social-link" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
+              <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener noreferrer" class="social-link" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
                 <img src="assets/images/icons/tiktok.svg" alt="">
                 <div class="social-link-text">
                   <strong>TikTok</strong>
@@ -225,7 +214,7 @@
                 </div>
               </a>
               
-              <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" class="social-link" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
+              <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener noreferrer" class="social-link" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
                 <img src="assets/images/icons/goodreads.svg" alt="">
                 <div class="social-link-text">
                   <strong>Goodreads</strong>
@@ -278,7 +267,7 @@
     </section>
   </main>
   
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-container">
       <div class="footer-content">
         <div class="footer-newsletter">
@@ -287,35 +276,34 @@
           <form class="newsletter-form" action="#" method="post">
             <div class="form-group">
               <label for="footer-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
-              <input type="email" id="footer-email" name="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+              <input type="email" id="footer-email" name="email" autocomplete="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
               <button type="submit" class="btn-gold" data-i18n="footer.newsletter.btn">Subscribe</button>
             </div>
             <span class="error-message" role="alert"></span>
             <span class="success-message" role="status"></span>
           </form>
         </div>
-        
         <div class="footer-social">
           <h3 data-i18n="footer.social.title">Follow Me</h3>
           <div class="social-icons">
-            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
+            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
               <img src="assets/images/icons/instagram.svg" alt="">
             </a>
-            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
+            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
               <img src="assets/images/icons/tiktok.svg" alt="">
             </a>
-            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
+            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
               <img src="assets/images/icons/goodreads.svg" alt="">
             </a>
           </div>
         </div>
       </div>
-      
       <div class="footer-info">
         <p data-i18n="footer.copyright">&copy; 2026 Chikielau. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
   
   <!-- Newsletter Modal -->
   <div class="modal-overlay" id="newsletterModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
@@ -327,7 +315,7 @@
         <form class="modal-form" action="#" method="post">
           <div class="form-group">
             <label for="modal-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
-            <input type="email" id="modal-email" name="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+            <input type="email" id="modal-email" name="email" autocomplete="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
           </div>
           <button type="submit" class="btn-gold" data-i18n="modal.btn.subscribe">Subscribe</button>
           <span class="error-message" role="alert"></span>
@@ -337,8 +325,10 @@
     </div>
   </div>
   
+  <noscript><p style="text-align:center;color:#FFF8E7;padding:2rem;">This site works best with JavaScript enabled.</p></noscript>
+
   <!-- JavaScript -->
-  <script src="js/translations.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/translations.js?v=1" defer></script>
+  <script src="js/script.js?v=1" defer></script>
 </body>
 </html>

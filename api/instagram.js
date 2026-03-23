@@ -1,26 +1,28 @@
-/**
- * Vercel Serverless Function - Instagram Feed
- * Fetches latest Instagram posts using Instagram Basic Display API
- * 
- * Environment Variables Required:
- * - INSTAGRAM_ACCESS_TOKEN: Your Instagram Basic Display API access token
- * - INSTAGRAM_USER_ID: Your Instagram user ID (optional, can be fetched from token)
- */
+import { Redis } from '@upstash/redis';
+import { Ratelimit } from '@upstash/ratelimit';
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(30, '1 h'),
+  prefix: 'instagram',
+});
 
 export default async function handler(req, res) {
-  // Only allow GET requests
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  try {
+    const ip = req.headers['x-forwarded-for']?.split(',')[0] || 'anonymous';
+    const { success } = await ratelimit.limit(ip);
+    if (!success) return res.status(429).json({ error: 'Too many requests' });
+  } catch { /* allow request if rate limiter fails */ }
 
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
   
   if (!accessToken) {
     console.error('INSTAGRAM_ACCESS_TOKEN not configured');
-    return res.status(500).json({ 
-      error: 'Instagram API not configured',
-      message: 'Please set INSTAGRAM_ACCESS_TOKEN in environment variables'
-    });
+    return res.status(500).json({ error: 'Not configured' });
   }
 
   try {
@@ -46,8 +48,7 @@ export default async function handler(req, res) {
       }
       
       return res.status(response.status).json({
-        error: 'Instagram API error',
-        message: errorData.error?.message || 'Failed to fetch Instagram posts'
+        error: 'Instagram API error'
       });
     }
     
@@ -59,7 +60,7 @@ export default async function handler(req, res) {
       caption: post.caption || '',
       type: post.media_type,
       url: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
-      permalink: post.permalink,
+      permalink: post.permalink?.startsWith('https://') ? post.permalink : '#',
       timestamp: post.timestamp
     }));
     
@@ -75,8 +76,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error fetching Instagram posts:', error);
     return res.status(500).json({
-      error: 'Server error',
-      message: 'Failed to fetch Instagram posts'
+      error: 'Failed to fetch Instagram posts'
     });
   }
 }

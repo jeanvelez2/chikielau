@@ -1,0 +1,268 @@
+/* ===================================
+   Main Stylesheet
+   Template 2: Celestial Bookshelf
+   Dramatic dark celestial theme
+   
+   STRUCTURE:
+   1. CSS Reset & Normalize
+   2. Base Typography
+   3. Layout Components (Header, Footer, Navigation)
+   4. Page-Specific Styles
+   5. Responsive Media Queries
+   
+   CUSTOMIZATION TIPS:
+   - Colors are defined in variables.css - change them there for site-wide updates
+   - Mobile-first approach: base styles are for mobile, media queries enhance for larger screens
+   - All spacing uses CSS custom properties for consistency
+   =================================== */
+
+/* ===== CSS Reset & Normalize ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Celestial starfield background - covers entire viewport */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--color-background-primary);
+  background-image: 
+    radial-gradient(circle, var(--color-gold-primary) 3px, transparent 3px),
+    radial-gradient(circle, var(--color-gold-light) 2px, transparent 2px),
+    radial-gradient(circle, var(--color-gold-primary) 2px, transparent 2px),
+    radial-gradient(circle, var(--color-gold-primary) 1.5px, transparent 1.5px),
+    radial-gradient(circle, var(--color-gold-light) 1px, transparent 1px),
+    radial-gradient(circle, var(--color-gold-primary) 1px, transparent 1px),
+    radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
+  background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
+  opacity: 1;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Starfield transparency - sections show stars through */
+body .blog-archive,
+body .featured-posts,
+body .instagram-gallery,
+body .shop-section,
+body .about-story,
+body .reading-stats,
+body .favorite-genres,
+body .personal-touches,
+body .contact-form-section,
+body .contact-faq {
+  background-color: rgba(44, 44, 44, 0.75);
+}
+
+body .blog-header,
+body .hero-split,
+body .shop-header,
+body .about-hero,
+body .about-cta,
+body .contact-hero,
+body .post-header {
+  background-color: rgba(26, 26, 26, 0.75);
+  background-image: none;
+}
+
+body .post-content,
+body .contact-form-wrapper,
+body .shop-container {
+  background-color: rgba(44, 44, 44, 0.85);
+}
+
+/* Ensure content is above the starfield */
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Reading Progress Bar ===== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-gold-primary);
+  z-index: var(--z-index-tooltip);
+  transition: width 0.1s linear;
+}
+
+/* ===== Skip to Content Link ===== */
+
+/* ===== Light Mode Toggle ===== */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-black-secondary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.theme-toggle:hover { border-color: var(--color-gold-primary); color: var(--color-gold-primary); }
+
+[data-theme="light"] {
+  --color-black-primary: #F5F0E8;
+  --color-black-secondary: #EDE7DB;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #6A6A6A;
+  --color-background-primary: #F5F0E8;
+  --color-background-secondary: #EDE7DB;
+  --color-gold-primary: #7A6518;
+  --color-gold-light: #A8912E;
+  --color-accent: #7A6518;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+}
+[data-theme="light"] .nav-container,
+[data-theme="light"] header { background: #F5F0E8; }
+[data-theme="light"] .footer { background: #1A1A1A; color: #FFF8E7; }
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-gold-primary);
+  color: var(--color-black-primary);
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 700;
+  z-index: var(--z-index-tooltip);
+  text-decoration: none;
+  transition: top var(--transition-speed) var(--transition-easing);
+}
+
+.skip-link:focus {
+  top: var(--spacing-sm);
+}
+
+/* ===== Base Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: var(--color-cream-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  color: var(--color-gold-primary);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-gold-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-easing);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-gold-light);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--color-gold-primary);
+  outline-offset: 2px;
+}
+
+strong, b {
+  font-weight: var(--font-weight-bold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* ===== Lists ===== */
+ul, ol {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-lg);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-secondary);
+}
+
+/* ===== Images ===== */
+/* Responsive images - automatically scale to container width */
+/* Images use loading="lazy" attribute in HTML for performance optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+

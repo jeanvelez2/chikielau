@@ -4,161 +4,104 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Newsletter coming soon from Chikielau. Subscribe for book recommendations and exclusive content.">
-  
+  <link rel="icon" type="image/png" href="assets/images/favicon-64.png">
+  <link rel="canonical" href="https://chikielau.com/newsletter.html">
+  <meta property="og:title" content="Newsletter - Chikielau">
+  <meta property="og:description" content="Subscribe for book recommendations and exclusive content from Chikielau.">
+  <meta property="og:image" content="https://chikielau.com/assets/images/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chikielau.com/newsletter.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Newsletter - Chikielau">
+  <meta name="twitter:description" content="Subscribe for book recommendations and exclusive content from Chikielau.">
+  <meta name="twitter:image" content="https://chikielau.com/assets/images/og-image.jpg">
   <title>Newsletter - Coming Soon - Chikielau</title>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/variables.css?v=11">
-  <link rel="stylesheet" href="css/styles.css?v=11">
-  
-  <style>
-    /* Starfield background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #1A1A1A;
-      background-image: 
-        radial-gradient(circle, #D4AF37 3px, transparent 3px),
-        radial-gradient(circle, #F4E4C1 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px),
-        radial-gradient(circle, #F4E4C1 1px, transparent 1px),
-        radial-gradient(circle, #D4AF37 1px, transparent 1px),
-        radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
-      background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
-      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
-      opacity: 1;
-      animation: twinkle 3s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 1; }
-    }
-    
-    /* Coming Soon Styles */
-    .coming-soon-container {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .coming-soon-title {
-      font-family: var(--font-heading);
-      font-size: 4rem;
-      color: var(--color-gold);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-    }
-    
-    .coming-soon-subtitle {
-      font-family: var(--font-body);
-      font-size: 1.5rem;
-      color: var(--color-text);
-      max-width: 600px;
-      line-height: 1.6;
-    }
-    
-    @media (max-width: 768px) {
-      .coming-soon-title {
-        font-size: 2.5rem;
-      }
-      
-      .coming-soon-subtitle {
-        font-size: 1.125rem;
-      }
-    }
-  </style>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css?v=12">
+  <link rel="stylesheet" href="css/styles.min.css?v=16">
+  <link rel="stylesheet" href="css/fonts.css?v=12">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <header class="site-header">
+  <a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
     <div class="header-container">
       <div class="logo">
         <a href="index.html">
-          <img src="assets/images/BORDE_LAU.png" alt="Chikielau Logo - Celestial book lover">
-          <span class="site-title">Chikielau</span>
+          <img src="assets/images/logo-200.webp" alt="Chikielau Logo - Celestial book lover" width="50" height="50">
         </a>
       </div>
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="blog.html" class="nav-link">Blog</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="shop.html" class="nav-link">Shop</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="shop.html" class="nav-link" data-i18n="nav.shop">Shop</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
-        <span class="hamburger"></span>
-      </button>
+      <div class="header-actions">
+        <div class="language-toggle" role="group" aria-label="Language selection">
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" data-i18n-aria="aria.toggle.nav" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span class="hamburger"></span>
+        </button>
+      </div>
     </div>
   </header>
-  
-  <main>
-    <div class="coming-soon-container">
-      <h1 class="coming-soon-title">Coming Soon</h1>
-      <p class="coming-soon-subtitle">
+
+  <main id="main">
+    <div class="coming-soon-container" style="min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;z-index:1;">
+      <h1 style="font-family:var(--font-primary);font-size:4rem;color:var(--color-gold-primary);margin-bottom:1rem;" data-i18n="comingsoon.title">Coming Soon</h1>
+      <p style="font-family:var(--font-secondary);font-size:1.5rem;color:var(--color-text-primary);max-width:600px;line-height:1.6;" data-i18n="comingsoon.newsletter">
         Weekly book recommendations and exclusive content are on the way. Subscribe through the footer to be notified when we launch.
+      </p>
+      <p style="margin-top: var(--spacing-md);">
+        <a href="/api/newsletter-archive" class="btn-outline" data-i18n="newsletter.archive">Browse Past Newsletters</a>
       </p>
     </div>
   </main>
-  
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-container">
       <div class="footer-content">
         <div class="footer-newsletter">
-          <h3>Join My Book Club</h3>
-          <p>Get weekly book recommendations and exclusive content delivered to your inbox!</p>
+          <h3 data-i18n="footer.newsletter.title">Join My Book Club</h3>
+          <p data-i18n="footer.newsletter.text">Get weekly book recommendations and exclusive content delivered to your inbox!</p>
           <form class="newsletter-form" action="#" method="post">
             <div class="form-group">
-              <label for="footer-email" class="sr-only">Email address</label>
-              <input type="email" id="footer-email" name="email" placeholder="Your email address" required aria-required="true">
-              <button type="submit" class="btn-gold">Subscribe</button>
+              <label for="footer-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
+              <input type="email" id="footer-email" name="email" autocomplete="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+              <button type="submit" class="btn-gold" data-i18n="footer.newsletter.btn">Subscribe</button>
             </div>
             <span class="error-message" role="alert"></span>
             <span class="success-message" role="status"></span>
           </form>
         </div>
-        
         <div class="footer-social">
-          <h3>Follow Me</h3>
+          <h3 data-i18n="footer.social.title">Follow Me</h3>
           <div class="social-icons">
-            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on Instagram">
+            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
               <img src="assets/images/icons/instagram.svg" alt="">
             </a>
-            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on TikTok">
+            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
               <img src="assets/images/icons/tiktok.svg" alt="">
             </a>
-            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on Goodreads">
+            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
               <img src="assets/images/icons/goodreads.svg" alt="">
             </a>
           </div>
         </div>
       </div>
-      
       <div class="footer-info">
-        <p>&copy; 2026 Chikielau. All rights reserved.</p>
+        <p data-i18n="footer.copyright">&copy; 2026 Chikielau. All rights reserved.</p>
       </div>
     </div>
   </footer>
-  
-  <!-- JavaScript -->
-  <script src="js/script.js"></script>
+
+  <noscript><p style="text-align:center;color:#FFF8E7;padding:2rem;">This site works best with JavaScript enabled.</p></noscript>
+  <script src="js/translations.js?v=1" defer></script>
+  <script src="js/script.js?v=1" defer></script>
 </body>
 </html>

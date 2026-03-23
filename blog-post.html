@@ -8,13 +8,20 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Book Review | Chikielau">
   <meta property="og:description" content="Read this in-depth book review with thoughtful analysis, star ratings, and honest opinions.">
-  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image" content="https://chikielau.com/assets/images/og-image.jpg">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://chikielau.com/blog-post.html">
+  <link rel="icon" type="image/png" href="assets/images/favicon-64.png">
+  <link rel="canonical" href="https://chikielau.com/blog-post.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Book Review | Chikielau">
+  <meta name="twitter:description" content="Read this in-depth book review with thoughtful analysis, star ratings, and honest opinions.">
+  <meta name="twitter:image" content="https://chikielau.com/assets/images/og-image.jpg">
   
   <title>Book Review - Chikielau</title>
   
   <!-- Schema.org JSON-LD Markup for Book Review -->
+  <!-- TEMPLATE: Update all fields below for each new review -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,53 +89,25 @@
   </script>
   
   <!-- CSS -->
-  <link rel="stylesheet" href="css/variables.css?v=11">
-  <link rel="stylesheet" href="css/styles.css?v=11">
-  
-  <style>
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #1A1A1A;
-      background-image: 
-        radial-gradient(circle, #D4AF37 3px, transparent 3px),
-        radial-gradient(circle, #F4E4C1 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 2px, transparent 2px),
-        radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px),
-        radial-gradient(circle, #F4E4C1 1px, transparent 1px),
-        radial-gradient(circle, #D4AF37 1px, transparent 1px),
-        radial-gradient(circle, rgba(212, 175, 55, 0.9) 1.5px, transparent 1.5px);
-      background-size: 400px 400px, 300px 300px, 220px 220px, 180px 180px, 140px 140px, 90px 90px, 120px 120px;
-      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 250px 30px, 180px 180px, 300px 50px;
-      opacity: 1;
-      animation: twinkle 3s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 1; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/variables.css?v=12">
+  <link rel="stylesheet" href="css/styles.min.css?v=16">
   
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css?v=12">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <header class="site-header">
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+  <a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
     <div class="header-container">
       <div class="logo">
         <a href="index.html">
-          <img src="assets/images/BORDE_LAU.png" alt="Chikielau Logo - Celestial book lover">
+          <img src="assets/images/logo-200.webp" alt="Chikielau Logo - Celestial book lover" width="50" height="50">
         </a>
       </div>
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
           <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a></li>
@@ -138,7 +117,7 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <div class="language-toggle">
+        <div class="language-toggle" role="group" aria-label="Language selection">
           <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
           <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
         </div>
@@ -148,8 +127,17 @@
       </div>
     </div>
   </header>
+
   
-  <main>
+  <main id="main">
+    <!-- TEMPLATE: This page serves as the blog post template. 
+         Duplicate this file for each new review and update:
+         - Schema.org JSON-LD (title, author, ISBN, rating, date, review text)
+         - Breadcrumb schema (post name and URL)
+         - OG/Twitter meta tags (title, description, URL)
+         - Page title
+         - All content sections below
+    -->
     <article class="blog-post">
       <header class="post-header">
         <div class="post-header-container">
@@ -281,8 +269,8 @@
             <h3>Get Your Copy</h3>
             <p>Support this blog by purchasing through these affiliate links:</p>
             <div class="buy-buttons">
-              <a href="#" class="btn-gold" target="_blank" rel="noopener">Buy on Amazon</a>
-              <a href="#" class="btn-outline" target="_blank" rel="noopener">Buy on Bookshop.org</a>
+              <a href="#" class="btn-gold" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+              <a href="#" class="btn-outline" target="_blank" rel="noopener noreferrer">Buy on Bookshop.org</a>
             </div>
           </section>
         </div>
@@ -355,44 +343,43 @@
     </article>
   </main>
   
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-container">
       <div class="footer-content">
         <div class="footer-newsletter">
-          <h3>Join My Book Club</h3>
-          <p>Get weekly book recommendations and exclusive content delivered to your inbox!</p>
+          <h3 data-i18n="footer.newsletter.title">Join My Book Club</h3>
+          <p data-i18n="footer.newsletter.text">Get weekly book recommendations and exclusive content delivered to your inbox!</p>
           <form class="newsletter-form" action="#" method="post">
             <div class="form-group">
-              <label for="footer-email" class="sr-only">Email address</label>
-              <input type="email" id="footer-email" name="email" placeholder="Your email address" required aria-required="true">
-              <button type="submit" class="btn-gold">Subscribe</button>
+              <label for="footer-email" class="sr-only" data-i18n="footer.newsletter.placeholder">Email address</label>
+              <input type="email" id="footer-email" name="email" autocomplete="email" data-i18n-placeholder="footer.newsletter.placeholder" placeholder="Your email address" required aria-required="true">
+              <button type="submit" class="btn-gold" data-i18n="footer.newsletter.btn">Subscribe</button>
             </div>
             <span class="error-message" role="alert"></span>
             <span class="success-message" role="status"></span>
           </form>
         </div>
-        
         <div class="footer-social">
-          <h3>Follow Me</h3>
+          <h3 data-i18n="footer.social.title">Follow Me</h3>
           <div class="social-icons">
-            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on Instagram">
+            <a href="https://instagram.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.instagram" aria-label="Follow Chikielau on Instagram">
               <img src="assets/images/icons/instagram.svg" alt="">
             </a>
-            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on TikTok">
+            <a href="https://tiktok.com/@chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.tiktok" aria-label="Follow Chikielau on TikTok">
               <img src="assets/images/icons/tiktok.svg" alt="">
             </a>
-            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener" aria-label="Follow Chikielau on Goodreads">
+            <a href="https://goodreads.com/chikielau" target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.follow.goodreads" aria-label="Follow Chikielau on Goodreads">
               <img src="assets/images/icons/goodreads.svg" alt="">
             </a>
           </div>
         </div>
       </div>
-      
       <div class="footer-info">
-        <p>&copy; 2026 Chikielau. All rights reserved.</p>
+        <p data-i18n="footer.copyright">&copy; 2026 Chikielau. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
   
   <!-- Newsletter Modal -->
   <div class="modal-overlay" id="newsletterModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
@@ -404,7 +391,7 @@
         <form class="modal-form" action="#" method="post">
           <div class="form-group">
             <label for="modal-email" class="sr-only">Email address</label>
-            <input type="email" id="modal-email" name="email" placeholder="Your email address" required aria-required="true">
+            <input type="email" id="modal-email" name="email" autocomplete="email" placeholder="Your email address" required aria-required="true">
           </div>
           <button type="submit" class="btn-gold">Subscribe</button>
           <span class="error-message" role="alert"></span>
@@ -414,8 +401,11 @@
     </div>
   </div>
   
+  <noscript><p style="text-align:center;color:#FFF8E7;padding:2rem;">This site works best with JavaScript enabled.</p></noscript>
+
   <!-- JavaScript -->
-  <script src="js/translations.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/translations.js?v=1" defer></script>
+  <script src="js/script.js?v=1" defer></script>
+  <script src="js/pages.js?v=1" defer></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+Allow: /api/newsletter-archive
+Disallow: /partials/
+Disallow: /scripts/
+Disallow: /css/modules/
+
+Sitemap: https://chikielau.com/sitemap.xml

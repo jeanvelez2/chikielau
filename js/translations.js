@@ -52,8 +52,15 @@ const translations = {
     'footer.newsletter.text': 'Get weekly book recommendations and exclusive content delivered to your inbox!',
     'footer.newsletter.placeholder': 'Your email address',
     'footer.newsletter.btn': 'Subscribe',
+    'newsletter.archive': 'Browse Past Newsletters',
     'footer.social.title': 'Follow Me',
     'footer.copyright': '© 2026 Chikielau. All rights reserved.',
+    
+    // 404 Page
+    'error.404.title': '404',
+    'error.404.message': 'This page has drifted beyond the stars. Let\'s get you back to familiar constellations.',
+    'error.404.btn': 'Return Home',
+    'blog.search.placeholder': 'Search reviews...',
     
     // Modal
     'modal.title': 'Join the Book Club',
@@ -131,6 +138,8 @@ const translations = {
     'contact.form.subtitle': 'Fill out the form below and I\'ll get back to you as soon as possible. All fields marked with an asterisk (*) are required.',
     'contact.form.name': 'Name',
     'contact.form.email': 'Email',
+    'contact.form.topic': 'Topic',
+    'contact.form.topic.placeholder': 'Select a topic...',
     'contact.form.message': 'Message',
     'contact.form.name.placeholder': 'Your name',
     'contact.form.email.placeholder': 'your.email@example.com',
@@ -209,8 +218,15 @@ const translations = {
     'footer.newsletter.text': '¡Recibe recomendaciones semanales de libros y contenido exclusivo en tu bandeja de entrada!',
     'footer.newsletter.placeholder': 'Tu dirección de correo',
     'footer.newsletter.btn': 'Suscribirse',
+    'newsletter.archive': 'Ver Boletines Anteriores',
     'footer.social.title': 'Sígueme',
     'footer.copyright': '© 2026 Chikielau. Todos los derechos reservados.',
+    
+    // 404 Page
+    'error.404.title': '404',
+    'error.404.message': 'Esta página se ha perdido más allá de las estrellas. Volvamos a constelaciones conocidas.',
+    'error.404.btn': 'Volver al Inicio',
+    'blog.search.placeholder': 'Buscar reseñas...',
     
     // Modal
     'modal.title': 'Únete al Club de Lectura',
@@ -288,6 +304,8 @@ const translations = {
     'contact.form.subtitle': 'Completa el formulario a continuación y te responderé lo antes posible. Todos los campos marcados con asterisco (*) son obligatorios.',
     'contact.form.name': 'Nombre',
     'contact.form.email': 'Correo Electrónico',
+    'contact.form.topic': 'Tema',
+    'contact.form.topic.placeholder': 'Selecciona un tema...',
     'contact.form.message': 'Mensaje',
     'contact.form.name.placeholder': 'Tu nombre',
     'contact.form.email.placeholder': 'tu.correo@ejemplo.com',
@@ -370,6 +388,9 @@ class LanguageManager {
   }
   
   updatePageLanguage() {
+    // Update HTML lang attribute on every language update
+    document.documentElement.setAttribute('lang', this.currentLang);
+
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found - Chikielau">
+  <meta name="robots" content="noindex">
+  <title>404 - Page Not Found | Chikielau</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon-64.png">
+  <link rel="stylesheet" href="css/variables.css?v=12">
+  <link rel="stylesheet" href="css/styles.min.css?v=16">
+  <link rel="stylesheet" href="css/fonts.css?v=12">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    .error-page {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--spacing-lg);
+      position: relative;
+      z-index: 1;
+    }
+    .error-page h1 {
+      font-family: var(--font-primary);
+      font-size: 6rem;
+      color: var(--color-gold-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    .error-page p {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      max-width: 500px;
+      margin-bottom: var(--spacing-lg);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+<header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo-200.webp" alt="Chikielau Logo - Celestial book lover" width="50" height="50">
+        </a>
+      </div>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="shop.html" class="nav-link" data-i18n="nav.shop">Shop</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="language-toggle" role="group" aria-label="Language selection">
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" data-i18n-aria="aria.toggle.nav" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="error-page">
+      <h1 data-i18n="error.404.title">404</h1>
+      <p data-i18n="error.404.message">This page has drifted beyond the stars. Let's get you back to familiar constellations.</p>
+      <a href="index.html" class="btn-gold" data-i18n="error.404.btn">Return Home</a>
+    </div>
+  </main>
+  <noscript><p style="text-align:center;color:#FFF8E7;padding:2rem;">This site works best with JavaScript enabled.</p></noscript>
+  <script src="js/translations.js?v=1" defer></script>
+  <script src="js/script.js?v=1" defer></script>
+</body>
+</html>

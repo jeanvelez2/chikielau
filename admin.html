@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin - Chikielau</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon-64.png">
+  <link rel="stylesheet" href="css/variables.css?v=12">
+  <link rel="stylesheet" href="css/styles.min.css?v=16">
+  <link rel="stylesheet" href="css/fonts.css?v=12">
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    .admin-login, .admin-dashboard { max-width: 960px; margin: 0 auto; padding: var(--spacing-lg); min-height: 80vh; }
+    .admin-login { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .admin-dashboard { display: none; }
+    .admin-login input { width: 100%; max-width: 400px; margin-bottom: var(--spacing-sm); }
+    .admin-tabs { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); border-bottom: 2px solid var(--color-black-secondary); padding-bottom: var(--spacing-sm); flex-wrap: wrap; }
+    .admin-tab { background: none; color: var(--color-text-secondary); padding: var(--spacing-xs) var(--spacing-sm); border: none; cursor: pointer; font-size: var(--font-size-md); font-family: var(--font-secondary); }
+    .admin-tab.active { color: var(--color-gold-primary); border-bottom: 2px solid var(--color-gold-primary); }
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+    .stat-row { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); flex-wrap: wrap; }
+    .stat-box { background: var(--color-black-secondary); padding: var(--spacing-md); border-radius: var(--border-radius-sm); flex: 1; text-align: center; min-width: 120px; }
+    .stat-box .number { font-size: 2rem; color: var(--color-gold-primary); font-family: var(--font-primary); }
+    .stat-box .number.loading { opacity: 0.4; animation: pulse 1s infinite alternate; }
+    @keyframes pulse { from { opacity: 0.3; } to { opacity: 0.6; } }
+    .stat-box .label { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+    .subscriber-list { list-style: none; padding: 0; }
+    .subscriber-list li { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-sm); border-bottom: 1px solid var(--color-black-secondary); }
+    .subscriber-list li:hover { background: var(--color-black-secondary); }
+    .sub-email { color: var(--color-text-primary); }
+    .sub-date { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+    .btn-danger { background: #8b0000; color: #fff; border: none; padding: 4px 12px; border-radius: var(--border-radius-sm); cursor: pointer; font-size: var(--font-size-sm); }
+    .btn-danger:hover { background: #a00; }
+    .btn-sm { padding: 4px 12px; font-size: var(--font-size-sm); border-radius: var(--border-radius-sm); cursor: pointer; border: none; }
+    .btn-send { background: #2e5e2e; color: #8f8; }
+    .btn-send:hover { background: #3a7a3a; }
+    .btn-edit { background: #3a3a5e; color: #aaf; }
+    .btn-edit:hover { background: #4a4a7a; }
+    .compose-form { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+    .compose-form input, .compose-form textarea { width: 100%; }
+    .compose-form textarea { min-height: 250px; resize: vertical; font-family: monospace; }
+    .compose-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center; }
+    .compose-actions label { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+    .compose-actions input[type="datetime-local"] { max-width: 220px; }
+    .sub-count-hint { color: var(--color-text-muted); font-size: var(--font-size-sm); margin-left: auto; }
+    .newsletter-item { background: var(--color-black-secondary); padding: var(--spacing-md); border-radius: var(--border-radius-sm); margin-bottom: var(--spacing-sm); }
+    .newsletter-item h3 { color: var(--color-gold-primary); margin: 0 0 var(--spacing-xs); font-size: var(--font-size-lg); }
+    .newsletter-meta { color: var(--color-text-muted); font-size: var(--font-size-sm); display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center; }
+    .newsletter-meta .badge { padding: 2px 8px; border-radius: var(--border-radius-sm); font-size: 0.75rem; }
+    .badge-draft { background: #555; color: #ccc; }
+    .badge-sent { background: #2e5e2e; color: #8f8; }
+    .badge-sending { background: #5e5e2e; color: #ee8; }
+    .badge-scheduled { background: #2e3e5e; color: #8af; }
+    .admin-msg { padding: var(--spacing-sm); border-radius: var(--border-radius-sm); margin-bottom: var(--spacing-sm); display: none; }
+    .admin-msg.success { background: #1a3a1a; color: #8f8; display: block; }
+    .admin-msg.error { background: #3a1a1a; color: #f88; display: block; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); }
+    .admin-header h1 { color: var(--color-gold-primary); font-family: var(--font-primary); margin: 0; }
+    .btn-logout { background: none; border: 1px solid var(--color-text-muted); color: var(--color-text-muted); padding: 4px 16px; border-radius: var(--border-radius-sm); cursor: pointer; }
+    .empty-state { text-align: center; color: var(--color-text-muted); padding: var(--spacing-2xl); }
+    .sub-toolbar { display: flex; justify-content: flex-end; margin-bottom: var(--spacing-sm); }
+    .preview-box { background: #111; border: 1px solid var(--color-black-secondary); border-radius: var(--border-radius-sm); padding: var(--spacing-md); margin-bottom: var(--spacing-sm); display: none; }
+    .preview-box h2 { color: var(--color-gold-primary); margin-top: 0; font-size: var(--font-size-md); }
+    .preview-content { line-height: 1.6; }
+    .preview-content strong { color: var(--color-gold-light); }
+    .preview-content a { color: var(--color-gold-primary); }
+    .preview-content h1, .preview-content h2, .preview-content h3 { color: var(--color-gold-primary); font-family: var(--font-primary); }
+    .preview-content hr { border: 1px solid var(--color-black-secondary); }
+    .md-help { color: var(--color-text-muted); font-size: 0.75rem; }
+    .opens-info { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+    .open-bar-wrap { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .open-bar { height: 8px; background: var(--color-black-secondary); border-radius: 4px; flex: 1; max-width: 200px; overflow: hidden; }
+    .open-bar-fill { height: 100%; background: var(--color-gold-primary); border-radius: 4px; transition: width 0.3s; }
+    .open-bar-label { color: var(--color-text-muted); font-size: 0.75rem; white-space: nowrap; }
+    .stats-note { color: var(--color-text-muted); font-size: 0.7rem; font-style: italic; margin-top: 4px; }
+    .sub-source { color: var(--color-text-muted); font-size: 0.7rem; background: var(--color-black-secondary); padding: 1px 6px; border-radius: 3px; margin-left: 6px; }
+    .char-count { color: var(--color-text-muted); font-size: 0.75rem; text-align: right; }
+    .char-count.warn { color: #ee8; }
+    .reason-item { padding: var(--spacing-sm); border-bottom: 1px solid var(--color-black-secondary); display: flex; justify-content: space-between; }
+    .reason-item .reason-text { color: var(--color-text-primary); }
+    .reason-item .reason-meta { color: var(--color-text-muted); font-size: var(--font-size-sm); text-align: right; }
+    body.admin-light { background: #f5f5f0; color: #1a1a1a; }
+    body.admin-light .admin-dashboard, body.admin-light .admin-login { color: #1a1a1a; }
+    body.admin-light .stat-box, body.admin-light .newsletter-item, body.admin-light .reason-item { background: #e8e8e0; }
+    body.admin-light .subscriber-list li:hover { background: #e8e8e0; }
+    body.admin-light input, body.admin-light textarea, body.admin-light select { background: #fff; color: #1a1a1a; border-color: #ccc; }
+    body.admin-light .preview-box { background: #fff; border-color: #ccc; }
+    body.admin-light .admin-tab { color: #666; }
+    body.admin-light .sub-email, body.admin-light .reason-text { color: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <a href="#loginView" class="skip-link">Skip to main content</a>
+  <!-- Login -->
+  <div class="admin-login" id="loginView">
+    <h1 style="color: var(--color-gold-primary); font-family: var(--font-primary); margin-bottom: var(--spacing-lg);">Admin Login</h1>
+    <input type="password" id="adminPassword" placeholder="Enter admin password" aria-label="Admin password">
+    <button class="btn-gold" id="loginBtn" style="width: 100%; max-width: 400px;">Login</button>
+    <p id="loginError" style="color: #f88; margin-top: var(--spacing-sm); display: none;">Invalid password</p>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="admin-dashboard" id="dashboardView">
+    <div class="admin-header">
+      <h1>Newsletter Admin</h1>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="btn-logout" id="themeBtn" title="Toggle light/dark mode">☀</button>
+        <button class="btn-logout" id="shortcutsBtn" title="Keyboard shortcuts">?</button>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <div class="stat-row" id="stats">
+      <div class="stat-box"><div class="number" id="subCount">-</div><div class="label">Subscribers</div></div>
+      <div class="stat-box"><div class="number" id="nlCount">-</div><div class="label">Newsletters</div></div>
+      <div class="stat-box"><div class="number" id="sentCount">-</div><div class="label">Sent</div></div>
+      <div class="stat-box"><div class="number" id="scheduledCount">-</div><div class="label">Scheduled</div></div>
+      <div class="stat-box"><div class="number" id="newThisMonth">-</div><div class="label">New This Month</div></div>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="compose">Compose</button>
+      <button class="admin-tab" data-tab="newsletters">Newsletters</button>
+      <button class="admin-tab" data-tab="subscribers">Subscribers</button>
+      <button class="admin-tab" data-tab="feedback">Feedback</button>
+      <button class="admin-tab" data-tab="bounced">Bounced</button>
+    </div>
+
+    <!-- Compose -->
+    <div class="admin-panel active" id="panel-compose">
+      <div id="composeMsg" class="admin-msg"></div>
+      <input type="hidden" id="editingId">
+      <form class="compose-form" id="composeForm">
+        <input type="text" id="nlSubject" placeholder="Newsletter subject" required aria-label="Subject">
+        <input type="text" id="nlPreheader" placeholder="Preview text (shown in inbox next to subject)" aria-label="Preview text" style="font-size:0.9rem;">
+        <p class="md-help">Supports: **bold**, *italic*, [link](url), ![image](url), # headings, --- dividers</p>
+        <textarea id="nlBody" placeholder="Write your newsletter content (Markdown supported)..." required aria-label="Body"></textarea>
+        <div class="char-count" id="charCount">0 / 50,000</div>
+        <div class="draft-saved" id="draftSaved" style="color:var(--color-text-muted);font-size:0.75rem;display:none;"></div>
+        <input type="text" id="nlFooter" placeholder="Custom footer message (optional, e.g. Happy holidays!)" aria-label="Footer message" style="font-size:0.9rem;">
+        <div id="previewBox" class="preview-box">
+          <h2>Preview</h2>
+          <div id="previewContent" class="preview-content"></div>
+        </div>
+        <div class="compose-actions">
+          <button type="button" class="btn-gold" id="sendBtn">Send Now</button>
+          <button type="button" class="btn-outline" id="draftBtn">Save Draft</button>
+          <button type="button" class="btn-outline" id="previewBtn">Preview</button>
+          <button type="button" class="btn-outline" id="plainBtn">Plain Text</button>
+          <button type="button" class="btn-outline" id="testBtn">Send Test</button>
+          <label>Schedule: <input type="datetime-local" id="scheduleAt" aria-label="Schedule date"></label>
+          <button type="button" class="btn-outline" id="scheduleBtn">Schedule</button>
+          <button type="button" class="btn-outline" id="nextMorningBtn" title="Set to next 9 AM EST" style="font-size:0.75rem;">9AM</button>
+          <button type="button" class="btn-outline" id="resetBtn" style="color:#f88;border-color:#f88;">Reset</button>
+          <span class="sub-count-hint" id="subHint"></span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Newsletters list -->
+    <div class="admin-panel" id="panel-newsletters">
+      <div class="sub-toolbar">
+        <select id="nlFilter" aria-label="Filter by status" style="margin-right:auto;padding:4px 8px;font-size:var(--font-size-sm);background:var(--color-black-secondary);color:var(--color-text-primary);border:1px solid var(--color-black-secondary);border-radius:var(--border-radius-sm);">
+          <option value="all">All</option>
+          <option value="draft">Draft</option>
+          <option value="sent">Sent</option>
+          <option value="scheduled">Scheduled</option>
+        </select>
+        <button class="btn-outline" id="exportStatsBtn" style="font-size: var(--font-size-sm); padding: 4px 12px;">Export Stats CSV</button>
+      </div>
+      <div id="nlList"></div>
+    </div>
+
+    <!-- Subscribers list -->
+    <div class="admin-panel" id="panel-subscribers">
+      <div class="sub-toolbar">
+        <input type="text" id="subSearch" placeholder="Search subscribers..." aria-label="Search subscribers" style="flex:1;max-width:300px;margin-right:auto;">
+        <button class="btn-danger" id="bulkRemoveBtn" style="display:none;margin-right:8px;">Remove Selected</button>
+        <button class="btn-outline" id="importBtn" style="font-size: var(--font-size-sm); padding: 4px 12px;margin-right:8px;">Import CSV</button>
+        <input type="file" id="importFile" accept=".csv" style="display:none;">
+        <button class="btn-outline" id="exportBtn" style="font-size: var(--font-size-sm); padding: 4px 12px;">Export CSV</button>
+      </div>
+      <div id="subList"></div>
+    </div>
+
+    <!-- Unsub feedback -->
+    <div class="admin-panel" id="panel-feedback">
+      <div id="feedbackList"></div>
+    </div>
+
+    <!-- Bounced subscribers -->
+    <div class="admin-panel" id="panel-bounced">
+      <div id="bouncedList"></div>
+    </div>
+  </div>
+
+  <noscript><p style="color:#FFF8E7;text-align:center;padding:2rem;">JavaScript is required for the admin dashboard.</p></noscript>
+  <script src="js/admin.js?v=2"></script>
+</body>
+</html>

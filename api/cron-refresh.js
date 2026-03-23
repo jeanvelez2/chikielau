@@ -1,30 +1,13 @@
 /**
  * Vercel Cron Job - Automatic Instagram Token Refresh
- * This endpoint is called automatically by Vercel Cron every 30 days
- * 
- * Environment Variables Required:
- * - INSTAGRAM_ACCESS_TOKEN: Current Instagram access token
- * - CRON_SECRET: Secret key from Vercel Cron configuration
- * - VERCEL_PROJECT_ID: Your Vercel project ID
- * - VERCEL_TEAM_ID: Your Vercel team ID (if applicable)
- * - VERCEL_API_TOKEN: Vercel API token with write access to environment variables
+ * Called by Vercel Cron monthly to refresh the Instagram long-lived token.
  */
 
+import { safeCompare } from './_lib/config.js';
+
 export default async function handler(req, res) {
-  // Verify this is a legitimate cron request
-  const authHeader = req.headers.authorization;
   const cronSecret = process.env.CRON_SECRET;
-  
-  if (!cronSecret) {
-    console.error('CRON_SECRET not configured');
-    return res.status(500).json({ 
-      error: 'Cron not configured',
-      message: 'Please set CRON_SECRET in environment variables'
-    });
-  }
-  
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    console.error('Invalid cron authorization');
+  if (!cronSecret || !safeCompare(req.headers.authorization || '', `Bearer ${cronSecret}`)) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
@@ -32,20 +15,10 @@ export default async function handler(req, res) {
   const vercelToken = process.env.VERCEL_API_TOKEN;
   const projectId = process.env.VERCEL_PROJECT_ID;
   const teamId = process.env.VERCEL_TEAM_ID;
-  
-  if (!currentToken) {
-    console.error('INSTAGRAM_ACCESS_TOKEN not configured');
-    return res.status(500).json({ 
-      error: 'Instagram API not configured'
-    });
-  }
-  
-  if (!vercelToken || !projectId) {
-    console.error('Vercel API credentials not configured');
-    return res.status(500).json({ 
-      error: 'Vercel API not configured',
-      message: 'Please set VERCEL_API_TOKEN and VERCEL_PROJECT_ID'
-    });
+
+  if (!currentToken || !vercelToken || !projectId) {
+    console.error('Missing required env vars for cron refresh');
+    return res.status(500).json({ error: 'Not configured' });
   }
 
   try {
@@ -61,13 +34,13 @@ export default async function handler(req, res) {
       console.error('Instagram token refresh error:', errorData);
       
       return res.status(refreshResponse.status).json({
-        error: 'Token refresh failed',
-        message: errorData.error?.message || 'Failed to refresh Instagram token'
+        error: 'Token refresh failed'
       });
     }
     
     const refreshData = await refreshResponse.json();
     const newToken = refreshData.access_token;
+    if (!newToken) return res.status(502).json({ error: 'No token in refresh response' });
     
     // Step 2: Update the environment variable in Vercel
     const vercelApiUrl = teamId 
@@ -89,12 +62,7 @@ export default async function handler(req, res) {
     
     if (!getEnvResponse.ok) {
       console.error('Failed to get environment variables');
-      return res.status(500).json({
-        error: 'Failed to get environment variables',
-        tokenRefreshed: true,
-        newToken: newToken,
-        message: 'Token was refreshed but could not be automatically updated. Please update INSTAGRAM_ACCESS_TOKEN manually in Vercel dashboard.'
-      });
+      return res.status(500).json({ error: 'Failed to update token' });
     }
     
     const envVars = await getEnvResponse.json();
@@ -102,12 +70,7 @@ export default async function handler(req, res) {
     
     if (!tokenEnvVar) {
       console.error('INSTAGRAM_ACCESS_TOKEN environment variable not found');
-      return res.status(500).json({
-        error: 'Environment variable not found',
-        tokenRefreshed: true,
-        newToken: newToken,
-        message: 'Token was refreshed but environment variable not found. Please add INSTAGRAM_ACCESS_TOKEN manually in Vercel dashboard.'
-      });
+      return res.status(500).json({ error: 'Failed to update token' });
     }
     
     // Update the environment variable
@@ -128,14 +91,8 @@ export default async function handler(req, res) {
     });
     
     if (!updateResponse.ok) {
-      const updateError = await updateResponse.json();
-      console.error('Failed to update environment variable:', updateError);
-      return res.status(500).json({
-        error: 'Failed to update environment variable',
-        tokenRefreshed: true,
-        newToken: newToken,
-        message: 'Token was refreshed but could not be automatically updated. Please update INSTAGRAM_ACCESS_TOKEN manually in Vercel dashboard.'
-      });
+      console.error('Failed to update environment variable:', await updateResponse.text());
+      return res.status(500).json({ error: 'Failed to update token' });
     }
     
     // Success!
@@ -150,9 +107,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error in cron refresh:', error);
     return res.status(500).json({
-      error: 'Server error',
-      message: 'Failed to refresh Instagram token',
-      details: error.message
+      error: 'Failed to refresh Instagram token'
     });
   }
 }

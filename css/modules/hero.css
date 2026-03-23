@@ -1,0 +1,204 @@
+/* ===== Main Content Area ===== */
+main {
+  min-height: 60vh;
+}
+
+/* ===== Split-Screen Hero Section ===== */
+/* Dramatic asymmetric hero with branding on left, book grid on right */
+.hero-split {
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Mobile-first: Stacked layout */
+.hero-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* Left Side: Content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.hero-text {
+  width: 100%;
+}
+
+.hero-title {
+  font-size: var(--font-size-h1);
+  color: var(--color-gold-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-heading);
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.hero-tagline {
+  font-size: var(--font-size-lg);
+  color: var(--color-gold-light);
+  font-style: italic;
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-tight);
+}
+
+.hero-intro {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+  line-height: var(--line-height-base);
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.hero-cta .btn-gold,
+.hero-cta .btn-outline {
+  text-align: center;
+}
+
+/* Right Side: Book Covers Grid */
+.hero-books {
+  flex: 1;
+  position: relative;
+  padding: var(--spacing-md);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  position: relative;
+  z-index: 2;
+}
+
+.book-item {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--color-black-tertiary);
+  transition: all var(--transition-speed) var(--transition-easing);
+  background-color: var(--color-background-secondary);
+}
+
+.book-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed) var(--transition-easing);
+}
+
+.book-item:hover {
+  border-color: var(--color-gold-primary);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-gold);
+}
+
+.book-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Book overlay with star rating */
+.book-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.95), transparent);
+  padding: var(--spacing-sm);
+  opacity: 0;
+  transition: opacity var(--transition-speed) var(--transition-easing);
+}
+
+.book-item:hover .book-overlay {
+  opacity: 1;
+}
+
+/* Gold accent border decoration */
+.books-accent {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 200px;
+  height: 200px;
+  border: 3px solid var(--color-gold-primary);
+  border-radius: 50%;
+  opacity: 0.2;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.books-accent::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--color-gold-primary);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Base styles for small cards - applies to all screen sizes */
+.post-card.post-card-small {
+  height: auto;
+  min-height: 450px;
+}
+
+.post-card.post-card-small .post-card-content {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card.post-card-small .post-card-title {
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+}
+
+.post-card.post-card-small .post-card-meta {
+  margin-bottom: var(--spacing-sm);
+}
+
+.post-card.post-card-small .post-card-excerpt {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.post-card.post-card-small .star-rating {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.post-card.post-card-small .btn-read-more {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  margin-top: auto;
+}
+
+/* Mobile adjustments for small cards */
+@media (max-width: 767px) {
+  .post-card-small .post-card-excerpt {
+    -webkit-line-clamp: 2;
+  }
+}
+

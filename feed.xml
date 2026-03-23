@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chikielau - Celestial Book Reviews</title>
+    <link>https://chikielau.com</link>
+    <description>Bold book reviews, star ratings, and curated recommendations from the celestial world of books.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 15 Jan 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://chikielau.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://chikielau.com/assets/images/logo-200.webp</url>
+      <title>Chikielau</title>
+      <link>https://chikielau.com</link>
+    </image>
+
+    <item>
+      <title>The Midnight Library - Book Review</title>
+      <link>https://chikielau.com/reviews/the-midnight-library.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-midnight-library.html</guid>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+      <description>A profound exploration of regret, choice, and the infinite paths our lives could take. Matt Haig has crafted a story that resonates deeply with anyone who's ever wondered "what if?"</description>
+      <category>Contemporary Fiction</category>
+    </item>
+
+    <item>
+      <title>Fourth Wing - Book Review</title>
+      <link>https://chikielau.com/reviews/fourth-wing.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/fourth-wing.html</guid>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Rebecca Yarros delivers an addictive blend of dragon riders, forbidden romance, and deadly academia that will keep you turning pages late into the night.</description>
+      <category>Fantasy</category>
+    </item>
+
+    <item>
+      <title>The Seven Husbands of Evelyn Hugo - Book Review</title>
+      <link>https://chikielau.com/reviews/the-seven-husbands-of-evelyn-hugo.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-seven-husbands-of-evelyn-hugo.html</guid>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 GMT</pubDate>
+      <description>A captivating tale of Old Hollywood glamour, secrets, and the price of fame. Taylor Jenkins Reid crafts a story that's impossible to put down.</description>
+      <category>Historical Fiction</category>
+    </item>
+
+    <item>
+      <title>Project Hail Mary - Book Review</title>
+      <link>https://chikielau.com/reviews/project-hail-mary.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/project-hail-mary.html</guid>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Andy Weir's latest is a thrilling space adventure with humor and heart. Perfect for fans of The Martian who want something even more ambitious.</description>
+      <category>Science Fiction</category>
+    </item>
+
+    <item>
+      <title>The Song of Achilles - Book Review</title>
+      <link>https://chikielau.com/reviews/the-song-of-achilles.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-song-of-achilles.html</guid>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Madeline Miller reimagines the Trojan War through the eyes of Patroclus, creating a devastating love story that transcends time.</description>
+      <category>Mythology</category>
+    </item>
+
+    <item>
+      <title>House of Earth and Blood - Book Review</title>
+      <link>https://chikielau.com/reviews/house-of-earth-and-blood.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/house-of-earth-and-blood.html</guid>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Sarah J. Maas ventures into urban fantasy with a sprawling world of fae, angels, and demons that will consume your every waking moment.</description>
+      <category>Urban Fantasy</category>
+    </item>
+
+    <item>
+      <title>The Invisible Life of Addie LaRue - Book Review</title>
+      <link>https://chikielau.com/reviews/the-invisible-life-of-addie-larue.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-invisible-life-of-addie-larue.html</guid>
+      <pubDate>Mon, 08 Dec 2025 00:00:00 GMT</pubDate>
+      <description>V.E. Schwab weaves a haunting tale of a woman cursed to be forgotten by everyone she meets, spanning 300 years of art, love, and defiance.</description>
+      <category>Fantasy</category>
+    </item>
+
+    <item>
+      <title>A Court of Thorns and Roses - Book Review</title>
+      <link>https://chikielau.com/reviews/a-court-of-thorns-and-roses.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/a-court-of-thorns-and-roses.html</guid>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
+      <description>A Beauty and the Beast retelling with fae politics, romance, and adventure. The series that launched a thousand BookTok videos.</description>
+      <category>Fantasy</category>
+    </item>
+
+    <item>
+      <title>The Night Circus - Book Review</title>
+      <link>https://chikielau.com/reviews/the-night-circus.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-night-circus.html</guid>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Erin Morgenstern creates an enchanting world where a mysterious circus appears without warning, and two young magicians are locked in a contest that will determine their fates.</description>
+      <category>Fantasy</category>
+    </item>
+
+    <item>
+      <title>Circe - Book Review</title>
+      <link>https://chikielau.com/reviews/circe.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/circe.html</guid>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Madeline Miller gives voice to one of mythology's most misunderstood characters, crafting a feminist epic about power, transformation, and finding your place in the world.</description>
+      <category>Mythology</category>
+    </item>
+
+    <item>
+      <title>The Priory of the Orange Tree - Book Review</title>
+      <link>https://chikielau.com/reviews/the-priory-of-the-orange-tree.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-priory-of-the-orange-tree.html</guid>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Samantha Shannon delivers an epic standalone fantasy with dragons, queens, and a world on the brink of destruction. No series commitment required.</description>
+      <category>Epic Fantasy</category>
+    </item>
+
+    <item>
+      <title>The Starless Sea - Book Review</title>
+      <link>https://chikielau.com/reviews/the-starless-sea.html</link>
+      <guid isPermaLink="true">https://chikielau.com/reviews/the-starless-sea.html</guid>
+      <pubDate>Mon, 03 Nov 2025 00:00:00 GMT</pubDate>
+      <description>A love letter to stories and storytelling. Erin Morgenstern's follow-up to The Night Circus is a labyrinthine journey through a hidden underground world of books and magic.</description>
+      <category>Fantasy</category>
+    </item>
+  </channel>
+</rss>
